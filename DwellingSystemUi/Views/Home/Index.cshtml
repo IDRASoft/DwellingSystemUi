@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Condominios";
+}
+
+@section scripts
+{
+    <script>
+        app.controller('panelBodyController', function($scope) {
+            $scope.model = {};
+            $scope.catColors = @Html.Raw(ViewBag.Yony);
+            $scope.model.color = $scope.catColors[0];
+        });
+
+    </script>
+
+}
+
+
+<br />
+<div ng-app="DwellingApp">
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Catálogo</div>
+                <div class="panel-body" ng-controller="panelBodyController">
+                    <select class="form-control" ng-model="model.color" ng-options="i as i.Value for i in catColors"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
