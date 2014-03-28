@@ -48,7 +48,7 @@ namespace DwellingSystemUi.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "Usuario o contraseña inválidos.");
                 }
             }
 
