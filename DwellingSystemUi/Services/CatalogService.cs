@@ -23,7 +23,6 @@ namespace DwellingSystemUi.Services
                 }
                 catch (Exception ex)
                 {
-                    
                     return ex.Message;
                 }
             });
