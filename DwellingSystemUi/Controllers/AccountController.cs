@@ -32,7 +32,6 @@ namespace DwellingSystemUi.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
