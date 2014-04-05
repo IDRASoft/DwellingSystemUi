@@ -12,13 +12,15 @@ namespace DwellingRepository.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaims
+    public partial class DwellingHouse
     {
-        public int Id { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
-        public string User_Id { get; set; }
+        public int DwellingHouseId { get; set; }
+        public int DwellingId { get; set; }
+        public int StreetId { get; set; }
+        public string OuterNumber { get; set; }
+        public bool IsObsolete { get; set; }
     
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public virtual DwellingRel DwellingRel { get; set; }
+        public virtual Street Street { get; set; }
     }
 }

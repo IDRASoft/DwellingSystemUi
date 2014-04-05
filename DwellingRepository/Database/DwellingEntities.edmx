@@ -1,0 +1,1002 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DwellingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="BuildingId" />
+          </Key>
+          <Property Name="BuildingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StreetId" Type="int" Nullable="false" />
+          <Property Name="NameBuilding" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OuterNumber" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatCountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="CatLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MunicipalityId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatMunicipality">
+          <Key>
+            <PropertyRef Name="MunicipalityId" />
+          </Key>
+          <Property Name="MunicipalityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="CatState">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DwellingApartment">
+          <Key>
+            <PropertyRef Name="DwellingApartmentId" />
+          </Key>
+          <Property Name="DwellingApartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DwellingId" Type="int" Nullable="false" />
+          <Property Name="BuildingId" Type="int" Nullable="false" />
+          <Property Name="InnerNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Floor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsObsolete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DwellingHouse">
+          <Key>
+            <PropertyRef Name="DwellingHouseId" />
+          </Key>
+          <Property Name="DwellingHouseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DwellingId" Type="int" Nullable="false" />
+          <Property Name="StreetId" Type="int" Nullable="false" />
+          <Property Name="OuterNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsObsolete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DwellingLocation">
+          <Key>
+            <PropertyRef Name="DwellingLocationId" />
+          </Key>
+          <Property Name="DwellingLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DwellingId" Type="int" Nullable="false" />
+          <Property Name="Area" Type="geometry" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BuildingImage" Type="varbinary(max)" />
+          <Property Name="Coordinates" Type="geometry" Nullable="false" />
+          <Property Name="Floor" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DwellingRel">
+          <Key>
+            <PropertyRef Name="DwellingId" />
+          </Key>
+          <Property Name="DwellingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="IsObsolete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="StreetId" />
+          </Key>
+          <Property Name="StreetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VwDwellingData">
+          <Key>
+            <PropertyRef Name="DwellingId" />
+          </Key>
+          <Property Name="DwellingId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="164" />
+          <Property Name="DwellingType" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <Association Name="FK_Building_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1" />
+          <End Role="Building" Type="Self.Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="StreetId" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="StreetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dwelling_CatLocation">
+          <End Role="CatLocation" Type="Self.CatLocation" Multiplicity="1" />
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="DwellingRel">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingApartment_Building">
+          <End Role="Building" Type="Self.Building" Multiplicity="1" />
+          <End Role="DwellingApartment" Type="Self.DwellingApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Building">
+              <PropertyRef Name="BuildingId" />
+            </Principal>
+            <Dependent Role="DwellingApartment">
+              <PropertyRef Name="BuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingApartment_Dwelling">
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
+          <End Role="DwellingApartment" Type="Self.DwellingApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingApartment">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingHouse_Dwelling">
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
+          <End Role="DwellingHouse" Type="Self.DwellingHouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingHouse">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingHouse_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1" />
+          <End Role="DwellingHouse" Type="Self.DwellingHouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="StreetId" />
+            </Principal>
+            <Dependent Role="DwellingHouse">
+              <PropertyRef Name="StreetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingLocation_Dwelling">
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
+          <End Role="DwellingLocation" Type="Self.DwellingLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingLocation">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Municipality">
+          <End Role="CatMunicipality" Type="Self.CatMunicipality" Multiplicity="1" />
+          <End Role="CatLocation" Type="Self.CatLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatMunicipality">
+              <PropertyRef Name="MunicipalityId" />
+            </Principal>
+            <Dependent Role="CatLocation">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Municipality_State">
+          <End Role="CatState" Type="Self.CatState" Multiplicity="1" />
+          <End Role="CatMunicipality" Type="Self.CatMunicipality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatState">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="CatMunicipality">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="CatCountry" Type="Self.CatCountry" Multiplicity="1" />
+          <End Role="CatState" Type="Self.CatState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatCountry">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="CatState">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DwellingModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Building" EntityType="Self.Building" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatCountry" EntityType="Self.CatCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatLocation" EntityType="Self.CatLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatMunicipality" EntityType="Self.CatMunicipality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatState" EntityType="Self.CatState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DwellingApartment" EntityType="Self.DwellingApartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DwellingHouse" EntityType="Self.DwellingHouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DwellingLocation" EntityType="Self.DwellingLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DwellingRel" EntityType="Self.DwellingRel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Street" EntityType="Self.Street" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VwDwellingData" EntityType="Self.VwDwellingData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwDwellingData].[DwellingId] AS [DwellingId], 
+    [VwDwellingData].[Address] AS [Address], 
+    [VwDwellingData].[DwellingType] AS [DwellingType]
+    FROM [dbo].[VwDwellingData] AS [VwDwellingData]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Building_Street" Association="Self.FK_Building_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Building" EntitySet="Building" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dwelling_CatLocation" Association="Self.FK_Dwelling_CatLocation">
+            <End Role="CatLocation" EntitySet="CatLocation" />
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingApartment_Building" Association="Self.FK_DwellingApartment_Building">
+            <End Role="Building" EntitySet="Building" />
+            <End Role="DwellingApartment" EntitySet="DwellingApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingApartment_Dwelling" Association="Self.FK_DwellingApartment_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingApartment" EntitySet="DwellingApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingHouse_Dwelling" Association="Self.FK_DwellingHouse_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingHouse" EntitySet="DwellingHouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingHouse_Street" Association="Self.FK_DwellingHouse_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="DwellingHouse" EntitySet="DwellingHouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingLocation_Dwelling" Association="Self.FK_DwellingLocation_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingLocation" EntitySet="DwellingLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Municipality" Association="Self.FK_Location_Municipality">
+            <End Role="CatMunicipality" EntitySet="CatMunicipality" />
+            <End Role="CatLocation" EntitySet="CatLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Municipality_State" Association="Self.FK_Municipality_State">
+            <End Role="CatState" EntitySet="CatState" />
+            <End Role="CatMunicipality" EntitySet="CatMunicipality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="CatCountry" EntitySet="CatCountry" />
+            <End Role="CatState" EntitySet="CatState" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DwellingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="BuildingId" />
+          </Key>
+          <Property Name="BuildingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StreetId" Type="Int32" Nullable="false" />
+          <Property Name="NameBuilding" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OuterNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_Building_Street" FromRole="Building" ToRole="Street" />
+          <NavigationProperty Name="DwellingApartment" Relationship="Self.FK_DwellingApartment_Building" FromRole="Building" ToRole="DwellingApartment" />
+        </EntityType>
+        <EntityType Name="CatCountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CatState" Relationship="Self.FK_State_Country" FromRole="CatCountry" ToRole="CatState" />
+        </EntityType>
+        <EntityType Name="CatLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MunicipalityId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DwellingRel" Relationship="Self.FK_Dwelling_CatLocation" FromRole="CatLocation" ToRole="DwellingRel" />
+          <NavigationProperty Name="CatMunicipality" Relationship="Self.FK_Location_Municipality" FromRole="CatLocation" ToRole="CatMunicipality" />
+        </EntityType>
+        <EntityType Name="CatMunicipality">
+          <Key>
+            <PropertyRef Name="MunicipalityId" />
+          </Key>
+          <Property Name="MunicipalityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CatLocation" Relationship="Self.FK_Location_Municipality" FromRole="CatMunicipality" ToRole="CatLocation" />
+          <NavigationProperty Name="CatState" Relationship="Self.FK_Municipality_State" FromRole="CatMunicipality" ToRole="CatState" />
+        </EntityType>
+        <EntityType Name="CatState">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CatCountry" Relationship="Self.FK_State_Country" FromRole="CatState" ToRole="CatCountry" />
+          <NavigationProperty Name="CatMunicipality" Relationship="Self.FK_Municipality_State" FromRole="CatState" ToRole="CatMunicipality" />
+        </EntityType>
+        <EntityType Name="DwellingApartment">
+          <Key>
+            <PropertyRef Name="DwellingApartmentId" />
+          </Key>
+          <Property Name="DwellingApartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DwellingId" Type="Int32" Nullable="false" />
+          <Property Name="BuildingId" Type="Int32" Nullable="false" />
+          <Property Name="InnerNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Floor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Building" Relationship="Self.FK_DwellingApartment_Building" FromRole="DwellingApartment" ToRole="Building" />
+          <NavigationProperty Name="DwellingRel" Relationship="Self.FK_DwellingApartment_Dwelling" FromRole="DwellingApartment" ToRole="DwellingRel" />
+        </EntityType>
+        <EntityType Name="DwellingHouse">
+          <Key>
+            <PropertyRef Name="DwellingHouseId" />
+          </Key>
+          <Property Name="DwellingHouseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DwellingId" Type="Int32" Nullable="false" />
+          <Property Name="StreetId" Type="Int32" Nullable="false" />
+          <Property Name="OuterNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DwellingRel" Relationship="Self.FK_DwellingHouse_Dwelling" FromRole="DwellingHouse" ToRole="DwellingRel" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_DwellingHouse_Street" FromRole="DwellingHouse" ToRole="Street" />
+        </EntityType>
+        <EntityType Name="DwellingLocation">
+          <Key>
+            <PropertyRef Name="DwellingLocationId" />
+          </Key>
+          <Property Name="DwellingLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DwellingId" Type="Int32" Nullable="false" />
+          <Property Name="Area" Type="Geometry" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BuildingImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Coordinates" Type="Geometry" Nullable="false" />
+          <Property Name="Floor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DwellingRel" Relationship="Self.FK_DwellingLocation_Dwelling" FromRole="DwellingLocation" ToRole="DwellingRel" />
+        </EntityType>
+        <EntityType Name="DwellingRel">
+          <Key>
+            <PropertyRef Name="DwellingId" />
+          </Key>
+          <Property Name="DwellingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CatLocation" Relationship="Self.FK_Dwelling_CatLocation" FromRole="DwellingRel" ToRole="CatLocation" />
+          <NavigationProperty Name="DwellingApartment" Relationship="Self.FK_DwellingApartment_Dwelling" FromRole="DwellingRel" ToRole="DwellingApartment" />
+          <NavigationProperty Name="DwellingHouse" Relationship="Self.FK_DwellingHouse_Dwelling" FromRole="DwellingRel" ToRole="DwellingHouse" />
+          <NavigationProperty Name="DwellingLocation" Relationship="Self.FK_DwellingLocation_Dwelling" FromRole="DwellingRel" ToRole="DwellingLocation" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="StreetId" />
+          </Key>
+          <Property Name="StreetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Building" Relationship="Self.FK_Building_Street" FromRole="Street" ToRole="Building" />
+          <NavigationProperty Name="DwellingHouse" Relationship="Self.FK_DwellingHouse_Street" FromRole="Street" ToRole="DwellingHouse" />
+        </EntityType>
+        <EntityType Name="VwDwellingData">
+          <Key>
+            <PropertyRef Name="DwellingId" />
+          </Key>
+          <Property Name="DwellingId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="164" FixedLength="false" Unicode="false" />
+          <Property Name="DwellingType" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Building_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1" />
+          <End Role="Building" Type="Self.Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="StreetId" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="StreetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingApartment_Building">
+          <End Role="Building" Type="Self.Building" Multiplicity="1" />
+          <End Role="DwellingApartment" Type="Self.DwellingApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Building">
+              <PropertyRef Name="BuildingId" />
+            </Principal>
+            <Dependent Role="DwellingApartment">
+              <PropertyRef Name="BuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="CatCountry" Type="Self.CatCountry" Multiplicity="1" />
+          <End Role="CatState" Type="Self.CatState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatCountry">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="CatState">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dwelling_CatLocation">
+          <End Role="CatLocation" Type="Self.CatLocation" Multiplicity="1" />
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="DwellingRel">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Municipality">
+          <End Role="CatMunicipality" Type="Self.CatMunicipality" Multiplicity="1" />
+          <End Role="CatLocation" Type="Self.CatLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatMunicipality">
+              <PropertyRef Name="MunicipalityId" />
+            </Principal>
+            <Dependent Role="CatLocation">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Municipality_State">
+          <End Role="CatState" Type="Self.CatState" Multiplicity="1" />
+          <End Role="CatMunicipality" Type="Self.CatMunicipality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatState">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="CatMunicipality">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingApartment_Dwelling">
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
+          <End Role="DwellingApartment" Type="Self.DwellingApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingApartment">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingHouse_Dwelling">
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
+          <End Role="DwellingHouse" Type="Self.DwellingHouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingHouse">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingHouse_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1" />
+          <End Role="DwellingHouse" Type="Self.DwellingHouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="StreetId" />
+            </Principal>
+            <Dependent Role="DwellingHouse">
+              <PropertyRef Name="StreetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingLocation_Dwelling">
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
+          <End Role="DwellingLocation" Type="Self.DwellingLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingLocation">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DwellingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Building" EntityType="Self.Building" />
+          <EntitySet Name="CatCountry" EntityType="Self.CatCountry" />
+          <EntitySet Name="CatLocation" EntityType="Self.CatLocation" />
+          <EntitySet Name="CatMunicipality" EntityType="Self.CatMunicipality" />
+          <EntitySet Name="CatState" EntityType="Self.CatState" />
+          <EntitySet Name="DwellingApartment" EntityType="Self.DwellingApartment" />
+          <EntitySet Name="DwellingHouse" EntityType="Self.DwellingHouse" />
+          <EntitySet Name="DwellingLocation" EntityType="Self.DwellingLocation" />
+          <EntitySet Name="DwellingRel" EntityType="Self.DwellingRel" />
+          <EntitySet Name="Street" EntityType="Self.Street" />
+          <EntitySet Name="VwDwellingData" EntityType="Self.VwDwellingData" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Building_Street" Association="Self.FK_Building_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Building" EntitySet="Building" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingApartment_Building" Association="Self.FK_DwellingApartment_Building">
+            <End Role="Building" EntitySet="Building" />
+            <End Role="DwellingApartment" EntitySet="DwellingApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="CatCountry" EntitySet="CatCountry" />
+            <End Role="CatState" EntitySet="CatState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dwelling_CatLocation" Association="Self.FK_Dwelling_CatLocation">
+            <End Role="CatLocation" EntitySet="CatLocation" />
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Municipality" Association="Self.FK_Location_Municipality">
+            <End Role="CatMunicipality" EntitySet="CatMunicipality" />
+            <End Role="CatLocation" EntitySet="CatLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Municipality_State" Association="Self.FK_Municipality_State">
+            <End Role="CatState" EntitySet="CatState" />
+            <End Role="CatMunicipality" EntitySet="CatMunicipality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingApartment_Dwelling" Association="Self.FK_DwellingApartment_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingApartment" EntitySet="DwellingApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingHouse_Dwelling" Association="Self.FK_DwellingHouse_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingHouse" EntitySet="DwellingHouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingHouse_Street" Association="Self.FK_DwellingHouse_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="DwellingHouse" EntitySet="DwellingHouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingLocation_Dwelling" Association="Self.FK_DwellingLocation_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingLocation" EntitySet="DwellingLocation" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DwellingModelStoreContainer" CdmEntityContainer="DwellingEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="DwellingModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="DwellingModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="DwellingModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="DwellingModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Building">
+            <EntityTypeMapping TypeName="DwellingModel.Building">
+              <MappingFragment StoreEntitySet="Building">
+                <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+                <ScalarProperty Name="NameBuilding" ColumnName="NameBuilding" />
+                <ScalarProperty Name="OuterNumber" ColumnName="OuterNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatCountry">
+            <EntityTypeMapping TypeName="DwellingModel.CatCountry">
+              <MappingFragment StoreEntitySet="CatCountry">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatLocation">
+            <EntityTypeMapping TypeName="DwellingModel.CatLocation">
+              <MappingFragment StoreEntitySet="CatLocation">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatMunicipality">
+            <EntityTypeMapping TypeName="DwellingModel.CatMunicipality">
+              <MappingFragment StoreEntitySet="CatMunicipality">
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatState">
+            <EntityTypeMapping TypeName="DwellingModel.CatState">
+              <MappingFragment StoreEntitySet="CatState">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DwellingApartment">
+            <EntityTypeMapping TypeName="DwellingModel.DwellingApartment">
+              <MappingFragment StoreEntitySet="DwellingApartment">
+                <ScalarProperty Name="DwellingApartmentId" ColumnName="DwellingApartmentId" />
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+                <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+                <ScalarProperty Name="InnerNumber" ColumnName="InnerNumber" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DwellingHouse">
+            <EntityTypeMapping TypeName="DwellingModel.DwellingHouse">
+              <MappingFragment StoreEntitySet="DwellingHouse">
+                <ScalarProperty Name="DwellingHouseId" ColumnName="DwellingHouseId" />
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+                <ScalarProperty Name="OuterNumber" ColumnName="OuterNumber" />
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DwellingLocation">
+            <EntityTypeMapping TypeName="DwellingModel.DwellingLocation">
+              <MappingFragment StoreEntitySet="DwellingLocation">
+                <ScalarProperty Name="DwellingLocationId" ColumnName="DwellingLocationId" />
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="BuildingImage" ColumnName="BuildingImage" />
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DwellingRel">
+            <EntityTypeMapping TypeName="DwellingModel.DwellingRel">
+              <MappingFragment StoreEntitySet="DwellingRel">
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Street">
+            <EntityTypeMapping TypeName="DwellingModel.Street">
+              <MappingFragment StoreEntitySet="Street">
+                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwDwellingData">
+            <EntityTypeMapping TypeName="DwellingModel.VwDwellingData">
+              <MappingFragment StoreEntitySet="VwDwellingData">
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DwellingType" ColumnName="DwellingType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="DwellingModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -25,7 +25,15 @@ namespace DwellingSystemUi
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.theme.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqGrid").Include(
+                "~/Scripts/i18n/grid.locale-es.js",
+                "~/Scripts/jquery.jqGrid.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/jqGrid").Include(
+                "~/Content/themes/custom-theme/jquery-ui-1.10.3.custom.min.css",
+                "~/Content/jquery.jqGrid/ui.jqgrid.css"));
         }
     }
 }

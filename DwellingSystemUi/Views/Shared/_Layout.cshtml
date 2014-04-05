@@ -9,21 +9,58 @@
 
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
+    
+    <script src="~/Scripts/common.js"></script>
     <script src="~/Scripts/App/Shared/mainApp.js"></script>
     @RenderSection("scripts", required: false)
 
 
 </head>
-<body>
-    @Html.Partial("_MainMenu")
+@*
+    <body ng-app="DwellingApp">
+        @Html.Partial("_MainMenu")
+        <div class="container body-content">
+            @RenderBody()
+            @Html.Partial("_SharedServices")
+            <hr />
+            <div id="dlgUpsert"></div>
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Powered by IDRASoft</p>
+            </footer>
+        </div>
+
+    </body>
+    </html>*@
+
+
+<body ng-app="DwellingApp">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            @Html.Partial("_MainMenu")
+        </div>
+    </div>
     <div class="container body-content">
         @RenderBody()
+        @Html.Partial("_SharedServices")
         <hr />
+        <div id="dlgUpsert"></div>
         <footer>
-            <p>&copy; @DateTime.Now.Year - Powered by IDRASoft</p>
+            <div class="row">
+                <div class="col-md-4 element-center">
+                    <p class="control-label color-main">&copy; @DateTime.Now.Year - Powered By IDRASoft.</p>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
         </footer>
     </div>
-
 </body>
-</html>

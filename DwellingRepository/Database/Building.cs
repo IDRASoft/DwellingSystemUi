@@ -6,19 +6,23 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace DwellingRepository.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaims
+    public partial class Building
     {
-        public int Id { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
-        public string User_Id { get; set; }
+        public Building()
+        {
+            this.DwellingApartment = new HashSet<DwellingApartment>();
+        }
     
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public int BuildingId { get; set; }
+        public int StreetId { get; set; }
+        public string NameBuilding { get; set; }
+        public string OuterNumber { get; set; }
+        public virtual Street Street { get; set; }
+        public virtual ICollection<DwellingApartment> DwellingApartment { get; set; }
     }
 }

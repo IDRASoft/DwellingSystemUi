@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8a10915c9e946f69250fab1d1bf94c2" Name="Diagram1">
+        <EntityTypeShape EntityType="DwellingModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.AspNetUsers" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.Building" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.CatCountry" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.CatLocation" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.CatMunicipality" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.CatState" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.DwellingApartment" Width="1.5" PointX="12" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.DwellingHouse" Width="1.5" PointX="15" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.DwellingLocation" Width="1.5" PointX="12" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.DwellingRel" Width="1.5" PointX="9.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.Street" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DwellingModel.VwDwellingData" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="DwellingModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_Building_Street" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingApartment_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_State_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_Dwelling_CatLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_Location_Municipality" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_Municipality_State" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingApartment_Dwelling" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingHouse_Dwelling" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingHouse_Street" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingLocation_Dwelling" ManuallyRouted="false" />
+        <AssociationConnector Association="DwellingModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

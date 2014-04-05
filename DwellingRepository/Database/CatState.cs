@@ -12,13 +12,20 @@ namespace DwellingRepository.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaims
+    public partial class CatState
     {
-        public int Id { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
-        public string User_Id { get; set; }
+        public CatState()
+        {
+            this.CatMunicipality = new HashSet<CatMunicipality>();
+        }
     
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public int StateId { get; set; }
+        public int CountryId { get; set; }
+        public string Name { get; set; }
+        public string Abbreviation { get; set; }
+        public string Description { get; set; }
+    
+        public virtual CatCountry CatCountry { get; set; }
+        public virtual ICollection<CatMunicipality> CatMunicipality { get; set; }
     }
 }

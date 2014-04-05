@@ -7,11 +7,8 @@ namespace DwellingSystemUi.Controllers
 {
     public class HomeController : BaseController
     {
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-
-            var t = await new CatalogService().GetLstColors(Db);
-            ViewBag.Yony = t;
             return View();
         }
 

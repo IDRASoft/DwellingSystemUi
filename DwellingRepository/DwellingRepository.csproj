@@ -39,8 +39,12 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.0\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,65 +53,129 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Catalogs\CatalogRepository.cs" />
-    <Compile Include="Database\DwellingEntitiesContext.cs" />
-    <Compile Include="Models\Shared\ComboBoxModel.cs" />
+    <Compile Include="Catalogs\DwellingDataRepository.cs" />
+    <Compile Include="Common\BaseRepository.cs" />
+    <Compile Include="Common\GenericRepository.cs" />
     <Compile Include="Database\AspNetRoles.cs">
-      <DependentUpon>Dwelling.tt</DependentUpon>
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\AspNetUserClaims.cs">
-      <DependentUpon>Dwelling.tt</DependentUpon>
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\AspNetUserLogins.cs">
-      <DependentUpon>Dwelling.tt</DependentUpon>
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\AspNetUsers.cs">
-      <DependentUpon>Dwelling.tt</DependentUpon>
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\CatColor.cs">
-      <DependentUpon>Dwelling.tt</DependentUpon>
+    <Compile Include="Database\Building.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\Dwelling.Context.cs">
+    <Compile Include="Database\CatCountry.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CatLocation.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CatMunicipality.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CatState.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DwellingApartment.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DwellingApartmentMetadata.cs" />
+    <Compile Include="Database\DwellingDataMetadata.cs" />
+    <Compile Include="Database\DwellingEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Dwelling.Context.tt</DependentUpon>
+      <DependentUpon>DwellingEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\Dwelling.cs">
+    <Compile Include="Database\DwellingEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Dwelling.tt</DependentUpon>
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\Dwelling.Designer.cs">
+    <Compile Include="Database\DwellingEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Dwelling.edmx</DependentUpon>
+      <DependentUpon>DwellingEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Database\DwellingHouse.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DwellingLocation.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DwellingRel.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DwellingRelMetadata.cs" />
+    <Compile Include="Database\Street.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\StreetMetadata.cs" />
+    <Compile Include="Database\VwDwellingData.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\BuildingMetadata.cs" />
+    <Compile Include="Models\Shared\ComboBoxModel.cs" />
+    <Compile Include="Models\Shared\EntityConstants.cs" />
+    <Compile Include="Models\Shared\ResponseMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Database\Dwelling.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Dwelling.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="Resources\ResManagment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResManagment.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ResShared.Designer.cs">
+      <DependentUpon>ResShared.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Database\Dwelling.Context.tt">
+    <EntityDeploy Include="Database\DwellingEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DwellingEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\DwellingEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Dwelling.edmx</DependentUpon>
-      <LastGenOutput>Dwelling.Context.cs</LastGenOutput>
+      <DependentUpon>DwellingEntities.edmx</DependentUpon>
+      <LastGenOutput>DwellingEntities.Context.cs</LastGenOutput>
     </None>
-    <None Include="Database\Dwelling.edmx.diagram">
-      <DependentUpon>Dwelling.edmx</DependentUpon>
+    <None Include="Database\DwellingEntities.edmx.diagram">
+      <DependentUpon>DwellingEntities.edmx</DependentUpon>
     </None>
-    <None Include="Database\Dwelling.tt">
+    <None Include="Database\DwellingEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Dwelling.edmx</DependentUpon>
-      <LastGenOutput>Dwelling.cs</LastGenOutput>
+      <DependentUpon>DwellingEntities.edmx</DependentUpon>
+      <LastGenOutput>DwellingEntities.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{57A226FD-9763-4BF0-AF3C-48DFD740323B}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ResManagment.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResManagment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ResShared.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResShared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
