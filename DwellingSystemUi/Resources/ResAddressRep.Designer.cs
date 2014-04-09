@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DwellingRepository.Resources {
+namespace DwellingSystemUi.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DwellingRepository.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResManagment {
+    public class ResAddressRep {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResManagment() {
+        internal ResAddressRep() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DwellingRepository.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DwellingRepository.Resources.ResManagment", typeof(ResManagment).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DwellingSystemUi.Resources.ResAddressRep", typeof(ResAddressRep).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,92 +61,74 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dirección.
+        ///   Looks up a localized string similar to No. Ext..
         /// </summary>
-        public static string ADDRESS_LABEL {
+        public static string FIELD_EXTNUM {
             get {
-                return ResourceManager.GetString("ADDRESS_LABEL", resourceCulture);
+                return ResourceManager.GetString("FIELD_EXTNUM", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Departamento.
+        ///   Looks up a localized string similar to No. Int..
         /// </summary>
-        public static string APARMENT_LABEL {
+        public static string FIELD_INTNUM {
             get {
-                return ResourceManager.GetString("APARMENT_LABEL", resourceCulture);
+                return ResourceManager.GetString("FIELD_INTNUM", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edificio.
+        ///   Looks up a localized string similar to Colonia.
         /// </summary>
-        public static string BUILDING_LABEL {
+        public static string FIELD_LOCATION {
             get {
-                return ResourceManager.GetString("BUILDING_LABEL", resourceCulture);
+                return ResourceManager.GetString("FIELD_LOCATION", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nivel.
+        ///   Looks up a localized string similar to Municipio.
         /// </summary>
-        public static string FLOOR_LABEL {
+        public static string FIELD_MUNICIPALITY {
             get {
-                return ResourceManager.GetString("FLOOR_LABEL", resourceCulture);
+                return ResourceManager.GetString("FIELD_MUNICIPALITY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Casa.
+        ///   Looks up a localized string similar to Teléfono.
         /// </summary>
-        public static string HOUSE_LABEL {
+        public static string FIELD_PHONE {
             get {
-                return ResourceManager.GetString("HOUSE_LABEL", resourceCulture);
+                return ResourceManager.GetString("FIELD_PHONE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numero interior.
+        ///   Looks up a localized string similar to Estado.
         /// </summary>
-        public static string INNER_NUMBER_LABEL {
+        public static string FIELD_STATE {
             get {
-                return ResourceManager.GetString("INNER_NUMBER_LABEL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre.
-        /// </summary>
-        public static string NAME_LABEL {
-            get {
-                return ResourceManager.GetString("NAME_LABEL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Número exterior.
-        /// </summary>
-        public static string OUTER_NUMBER_LABEL {
-            get {
-                return ResourceManager.GetString("OUTER_NUMBER_LABEL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Descripción de calle.
-        /// </summary>
-        public static string STREET_DESCRIPTION_LABEL {
-            get {
-                return ResourceManager.GetString("STREET_DESCRIPTION_LABEL", resourceCulture);
+                return ResourceManager.GetString("FIELD_STATE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Calle.
         /// </summary>
-        public static string STREET_LABEL {
+        public static string FIELD_STREET {
             get {
-                return ResourceManager.GetString("STREET_LABEL", resourceCulture);
+                return ResourceManager.GetString("FIELD_STREET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Código postal.
+        /// </summary>
+        public static string FIELD_ZIPCODE {
+            get {
+                return ResourceManager.GetString("FIELD_ZIPCODE", resourceCulture);
             }
         }
     }

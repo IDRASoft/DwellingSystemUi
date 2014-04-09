@@ -3,22 +3,15 @@ using DwellingRepository.Resources;
 
 namespace DwellingRepository.Database
 {
-    [MetadataType(typeof(BuildingMetadata))]
-    public partial class Building
+    [MetadataType(typeof(DwellingHouseMetadata))]
+    public partial class DwellingHouse
     {
-
     }
-    public class BuildingMetadata
+    public class DwellingHouseMetadata
     {
         [Required(ErrorMessageResourceType = typeof(ResShared), ErrorMessageResourceName = "REQUIRED_FIELD")]
         [Display(Name = "OUTER_NUMBER_LABEL", ResourceType = typeof(ResManagment))]
         [StringLength(50, ErrorMessageResourceType = typeof(ResShared), ErrorMessageResourceName = "LENGTH_FIELD_50", MinimumLength = 1)]
         public string OuterNumber { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(ResShared), ErrorMessageResourceName = "REQUIRED_FIELD")]
-        [Display(Name = "BUILDING_LABEL", ResourceType = typeof(ResManagment))]
-        [StringLength(50, ErrorMessageResourceType = typeof(ResShared), ErrorMessageResourceName = "LENGTH_FIELD_50", MinimumLength = 1)]
-        public string NameBuilding { get; set; }
-
     }
 }

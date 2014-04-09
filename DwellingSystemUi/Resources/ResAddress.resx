@@ -117,34 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ADDRESS_LABEL" xml:space="preserve">
-    <value>Dirección</value>
-  </data>
-  <data name="APARMENT_LABEL" xml:space="preserve">
-    <value>Departamento</value>
-  </data>
-  <data name="BUILDING_LABEL" xml:space="preserve">
-    <value>Edificio</value>
-  </data>
-  <data name="FLOOR_LABEL" xml:space="preserve">
-    <value>Nivel</value>
-  </data>
-  <data name="HOUSE_LABEL" xml:space="preserve">
-    <value>Casa</value>
-  </data>
-  <data name="INNER_NUMBER_LABEL" xml:space="preserve">
-    <value>Numero interior</value>
-  </data>
-  <data name="NAME_LABEL" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="OUTER_NUMBER_LABEL" xml:space="preserve">
-    <value>Número exterior</value>
-  </data>
-  <data name="STREET_DESCRIPTION_LABEL" xml:space="preserve">
-    <value>Descripción de calle</value>
-  </data>
-  <data name="STREET_LABEL" xml:space="preserve">
-    <value>Calle</value>
+  <data name="TITLE_SELECT_BY_ZIPCODE" xml:space="preserve">
+    <value>Ingrese su código postal para obtener automáticamente su dirección</value>
   </data>
 </root>

@@ -117,34 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ADDRESS_LABEL" xml:space="preserve">
-    <value>Dirección</value>
+  <data name="FIELD_EXTNUM" xml:space="preserve">
+    <value>No. Ext.</value>
   </data>
-  <data name="APARMENT_LABEL" xml:space="preserve">
-    <value>Departamento</value>
+  <data name="FIELD_INTNUM" xml:space="preserve">
+    <value>No. Int.</value>
   </data>
-  <data name="BUILDING_LABEL" xml:space="preserve">
-    <value>Edificio</value>
+  <data name="FIELD_LOCATION" xml:space="preserve">
+    <value>Colonia</value>
   </data>
-  <data name="FLOOR_LABEL" xml:space="preserve">
-    <value>Nivel</value>
+  <data name="FIELD_MUNICIPALITY" xml:space="preserve">
+    <value>Municipio</value>
   </data>
-  <data name="HOUSE_LABEL" xml:space="preserve">
-    <value>Casa</value>
+  <data name="FIELD_PHONE" xml:space="preserve">
+    <value>Teléfono</value>
   </data>
-  <data name="INNER_NUMBER_LABEL" xml:space="preserve">
-    <value>Numero interior</value>
+  <data name="FIELD_STATE" xml:space="preserve">
+    <value>Estado</value>
   </data>
-  <data name="NAME_LABEL" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="OUTER_NUMBER_LABEL" xml:space="preserve">
-    <value>Número exterior</value>
-  </data>
-  <data name="STREET_DESCRIPTION_LABEL" xml:space="preserve">
-    <value>Descripción de calle</value>
-  </data>
-  <data name="STREET_LABEL" xml:space="preserve">
+  <data name="FIELD_STREET" xml:space="preserve">
     <value>Calle</value>
+  </data>
+  <data name="FIELD_ZIPCODE" xml:space="preserve">
+    <value>Código postal</value>
   </data>
 </root>
