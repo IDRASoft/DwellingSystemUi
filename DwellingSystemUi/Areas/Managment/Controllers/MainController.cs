@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
 using DwellingRepository.Common;
@@ -32,14 +33,36 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DoUpsert(DwellingRel model, string param)
+        public ActionResult DoUpsert(DwellingRel model)
         {
             try
             {
 
-                var cosa = model;
-
-                Debug.WriteLine(param);
+                if (model.IsApartment)
+                {
+                    if (model.DwellingApartment == null)
+                    {
+                        model.DwellingApartment = new List<DwellingApartment> {model.DwellingApartmentToUse};
+                    }
+                    else
+                    {
+                        model.DwellingApartment.Clear();
+                        model.DwellingApartment.Add(model.DwellingApartmentToUse);
+                    }
+                }
+                else
+                {
+                    if (model.DwellingHouse == null)
+                    {
+                        model.DwellingHouse = new List<DwellingHouse> { model.DwellingHouseToUse };
+                    }
+                    else
+                    {
+                        model.DwellingHouse.Clear();
+                        model.DwellingHouse.Add(model.DwellingHouseToUse);
+                    }
+                }
+               
 
                 if(model.DwellingHouseToUse.OuterNumber == null)
                     Debug.WriteLine("es nula la cosa");

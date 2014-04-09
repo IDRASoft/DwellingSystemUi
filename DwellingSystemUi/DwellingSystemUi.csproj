@@ -306,6 +306,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\App\address\addressCtrl.js" />
     <Content Include="Scripts\App\address\zipSearchDrct.js" />
+    <Content Include="Scripts\App\Shared\hiddenDrct.js" />
     <Content Include="Scripts\App\Shared\mainApp.js" />
     <Content Include="Scripts\App\Shared\modalDlgCtrl.js" />
     <Content Include="Scripts\bootstrap.js" />

@@ -19,6 +19,7 @@
             </div>
         </div>
         <div class="col-xs-6">
+            {{LocationId}}
             @Html.HiddenFor(m => m.LocationId, new {ng_model = "LocationId", ng_update_hidden = "", ng_init = "LocationId = '" + (Model.LocationId > 0 ? Model.LocationId.ToString("D") : "") + "'"})
         </div>
     </div>
