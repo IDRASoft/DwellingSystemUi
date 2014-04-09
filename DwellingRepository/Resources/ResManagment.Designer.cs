@@ -88,6 +88,15 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Código postal.
+        /// </summary>
+        public static string FIELD_ZIPCODE {
+            get {
+                return ResourceManager.GetString("FIELD_ZIPCODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nivel.
         /// </summary>
         public static string FLOOR_LABEL {

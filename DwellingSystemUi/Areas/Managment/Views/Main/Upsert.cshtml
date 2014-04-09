@@ -1,0 +1,199 @@
+﻿@model DwellingRepository.Database.DwellingRel
+@using DwellingRepository.Resources
+@using DwellingSystemUi.Helpers
+@using ResShared = DwellingSystemUi.Resources.ResShared
+@{
+    Layout = null;
+}
+
+<script>
+    function dwellingTypeCtrl($scope) {
+    }
+
+    $(document).ready(function () {
+        window.showModalFormDlg("#dlgUpModalId", "#DwellingForm");
+    });
+</script>
+
+<div id="dlgUpModalId" class="modal fade" ng-controller="upsertController" ng-cloak>
+    <div class="modal-dialog" style="width:720px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="element-center">AGREGAR VIVIENDA</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="DwellingForm" name="DwellingForm" ng-submit="submit('#DwellingForm')" class="form-horizontal" role="form">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.DwellingId)
+
+                    <div ng-controller="dwellingTypeCtrl">
+                        <div class="panel panel-default panel-primary">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-folder-close"></span>&nbsp;&nbsp;@ResManagment.ADDRESS_LABEL
+                            </div>
+                            @PartialHelper.PartialFor(Html, model => model, "_EditAddress")
+
+                            
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(m => m.IsApartment, "false", new { ng_model = "m.IsApartment" })@ResManagment.HOUSE_LABEL
+                            </label>
+                            
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(m => m.IsApartment, "true", new
+                                   {
+                                       ng_model = "m.IsApartment",
+                                       ng_init = "m.IsApartment = '" + (Model.IsApartment ? "true" : "false") + "'"
+                                   })@ResManagment.APARMENT_LABEL
+                            </label>
+                         </div>
+
+                <div class="panel panel-default panel-primary" ng-model="m.IsApartment" ng-show="m.IsApartment === 'true'">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-folder-close"></span>&nbsp;&nbsp;@ResManagment.APARMENT_LABEL
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingApartmentToUse.Building.Street.Name, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingApartmentToUse.Building.Street.Name, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingApartmentToUse.Building.Street.Name)
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingApartmentToUse.Building.Street.Description, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingApartmentToUse.Building.Street.Description, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingApartmentToUse.Building.Street.Description)
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingApartmentToUse.Building.NameBuilding, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingApartmentToUse.Building.NameBuilding, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingApartmentToUse.Building.NameBuilding)
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingApartmentToUse.Building.OuterNumber, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingApartmentToUse.Building.OuterNumber, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingApartmentToUse.Building.OuterNumber)
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingApartmentToUse.Floor, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingApartmentToUse.Floor, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingApartmentToUse.Floor)
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingApartmentToUse.InnerNumber, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingApartmentToUse.InnerNumber, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingApartmentToUse.InnerNumber)
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default panel-primary" ng-model="m.IsApartment" ng-show="m.IsApartment === 'false' ">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-folder-close"></span>&nbsp;&nbsp;@ResManagment.HOUSE_LABEL
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingHouseToUse.Street.Name, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingHouseToUse.Street.Name, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingHouseToUse.Street.Name)
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingHouseToUse.Street.Description, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingHouseToUse.Street.Description, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingHouseToUse.Street.Description)
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.DwellingHouseToUse.OuterNumber, new { @class = "control-label" })
+                        </div>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.DwellingHouseToUse.OuterNumber, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                            @Html.ValidationMessageFor(model => model.DwellingHouseToUse.OuterNumber)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+        <br />
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div ng-show="MsgError" class="alert alert-danger element-center">
+                    {{MsgError}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span class="btn btn-default btn-sm" ng-click="cancel()">
+            @ResShared.BUTTON_CANCEL
+        </span>
+        <span class="btn btn-default btn-primary btn-sm" ng-disabled="WaitFor==true"
+              ng-click="submit('#DwellingForm', '@Url.Action("DoUpsert", "Main", new {area = "Managment"})')">
+            @ResShared.BUTTON_SAVE
+        </span>
+    </div>
+</div>
+</div>
+</div>
+

@@ -126,6 +126,9 @@
   <data name="BUILDING_LABEL" xml:space="preserve">
     <value>Edificio</value>
   </data>
+  <data name="FIELD_ZIPCODE" xml:space="preserve">
+    <value>Código postal</value>
+  </data>
   <data name="FLOOR_LABEL" xml:space="preserve">
     <value>Nivel</value>
   </data>

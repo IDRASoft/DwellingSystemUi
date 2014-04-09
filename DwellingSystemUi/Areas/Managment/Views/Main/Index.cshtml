@@ -1,0 +1,88 @@
+﻿@using DwellingSystemUi.Resources
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    @Styles.Render("~/Content/jqGrid")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqGrid")
+    
+    <script src="~/Scripts/App/Shared/upsertCtrl.js"></script>
+    <script src="~/Scripts/App/Shared/modalDlgCtrl.js"></script>
+    <script src="~/Scripts/App/address/addressCtrl.js"></script>
+    <script src="~/Scripts/App/address/zipSearchDrct.js"></script>
+
+    <script>
+
+    $(document).ready(function () {
+
+        var lastsel;
+        var upsert = function (id) {
+            window.showUpsert(id, "#angJsjqGridId", "@Url.Action("Upsert", "Main", new {area = "Managment"})", "#GridDwelling");
+        };
+
+        @* var obsolete = function (id) {
+                window.showObsolete(id, "#angJsjqGridId", "@Url.Action("DoObsolete", "CatMeasure", New With {.area = "Administration"})", "#GridCatUnitMeasuredId");
+            };*@
+
+        jQuery("#GridDwelling").jqGrid({
+            url: '@Url.Action("List", "Main", new { area = "Managment"})',
+            datatype: "json",
+            mtype: 'POST',
+            colNames: ['ID', 'Dirección', 'Tipo', 'Acciones'],
+            colModel: [
+                { name: 'DwellingId', index: 'DwellingId', hidden: true },
+                { name: 'Address', editable: true, index: 'Address', align: "center", width: 280, sorttype: 'string', searchoptions: { sopt: ['bw'] } },
+                { name: 'DwellingType', index: 'DwellingType', align: "center", width: 400, sorttype: 'string', search: false },
+                { name: 'Action', width: 100, align: "center", sortable: false, search: false }
+            ],
+            rowNum: 15,
+            rowList: [15, 30, 60],
+            pager: '#GridDwellingPager',
+            sortname: 'Address',
+            width: 800,
+            height: 380,
+            viewrecords: true,
+            shrinkToFit: false,
+            sortorder: "desc",
+            caption: "@ResShared.TITLE_MENU_DWELLING",
+            /*gridComplete: function() {
+                var ids = $(this).jqGrid('getDataIDs');
+                for (var i = 0; i < ids.length; i++) {
+                    var cl = ids[i];
+                    be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Editar unidad de medida\" onclick=\"upsert('" + cl + "');\"><span class=\"ui-icon ui-icon-pencil\"></span></a>";
+                    bo = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar unidad de medida\" onclick=\"obsolete('" + cl + "');\"><span class=\"ui-icon ui-icon-trash\"></span></a>";
+                    $(this).jqGrid('setRowData', ids[i], { Action: be + bo });
+                }
+            },*/
+            ondblClickRow: function (rowid) {
+                //upsert.call(this, rowid);
+            }
+        });
+
+
+        jQuery("#GridDwelling").jqGrid('navGrid', '#GridDwellingPager', { edit: false, add: true, del: false, search: true, addfunc: upsert});
+
+        jQuery("#GridDwelling").jqGrid('filterToolbar', {
+            stringResult: true,
+            searchOperators: true,
+            searchOnEnter: true,
+            multipleSearch: true,
+            ignoreCase: true
+        });
+    });
+
+    </script>
+}
+
+<h2 class="element-center">@ResShared.TITLE_MENU_DWELLING</h2>
+
+<div id="angJsjqGridId" ng-controller="modalDlgController">
+
+        <table id="GridDwelling" class="element-center"></table>
+        <div id="GridDwellingPager"></div>
+        <div class="blocker" ng-show="working"><div>Cargando...<img src="http://www.socialups.com/static/images/fbinventory/ajax_loader.gif"></div></div>
+
+</div>
