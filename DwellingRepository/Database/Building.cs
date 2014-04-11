@@ -6,6 +6,7 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace DwellingRepository.Database
 {
     using System;
@@ -22,6 +23,7 @@ namespace DwellingRepository.Database
         public int StreetId { get; set; }
         public string NameBuilding { get; set; }
         public string OuterNumber { get; set; }
+    
         public virtual Street Street { get; set; }
         public virtual ICollection<DwellingApartment> DwellingApartment { get; set; }
     }

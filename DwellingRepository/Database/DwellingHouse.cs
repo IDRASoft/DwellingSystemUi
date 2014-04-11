@@ -20,7 +20,7 @@ namespace DwellingRepository.Database
         public string OuterNumber { get; set; }
         public bool IsObsolete { get; set; }
     
-        public virtual DwellingRel DwellingRel { get; set; }
         public virtual Street Street { get; set; }
+        public virtual DwellingRel DwellingRel { get; set; }
     }
 }

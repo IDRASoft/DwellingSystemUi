@@ -5,10 +5,16 @@
 @section scripts
 {
     <script>
-        app.controller('panelBodyController', function($scope) {
-            $scope.model = {};
-           // $scope.catColors = @Html.Raw(ViewBag.Yony);
-            //$scope.model.color = $scope.catColors[0];
+        app.controller('panelBodyController', function ($scope) {
+
+            $scope.streetList = @Html.Raw(ViewBag.StreetList);
+                /* [{ name: 'black', shade: 'dark' },
+            { name: 'white', shade: 'light' },
+            { name: 'red', shade: 'dark' },
+            { name: 'blue', shade: 'dark' },
+            { name: 'yellow', shade: 'light' }];*/
+
+            $scope.streetModel = $scope.streetList[0];
         });
 
     </script>
@@ -22,8 +28,13 @@
         <div class="col-xs-6 col-xs-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">Catálogo</div>
+
                 <div class="panel-body" ng-controller="panelBodyController">
-                    <select class="form-control" ng-model="model.color" ng-options="i as i.Value for i in catColors"></select>
+
+                    <select ng-model="streetModel" ng-options="loc as loc.name for loc in streetList"></select>
+
+                    {{color}}
+
                 </div>
             </div>
         </div>

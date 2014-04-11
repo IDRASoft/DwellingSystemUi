@@ -3,7 +3,7 @@
 //     Este código se generó a partir de una plantilla.
 //
 //     Los cambios manuales en este archivo pueden causar un comportamiento inesperado de la aplicación.
-//     Los cambios manuales en este archivo se sobrescribirán si se regeneraaa el código.
+//     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -24,6 +24,7 @@ namespace DwellingRepository.Database
         public int DwellingId { get; set; }
         public int LocationId { get; set; }
         public bool IsObsolete { get; set; }
+        public bool IsApartment { get; set; }
     
         public virtual CatLocation CatLocation { get; set; }
         public virtual ICollection<DwellingApartment> DwellingApartment { get; set; }

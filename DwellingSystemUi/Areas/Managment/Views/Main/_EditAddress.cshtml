@@ -3,62 +3,76 @@
 
 <div id="@ViewData.TemplateInfo.HtmlFieldPrefix" ng-controller="addressController">
     <div class="row">
-        <div class="col-xs-6">
-            <p class="col-xs-12">@ResAddress.TITLE_SELECT_BY_ZIPCODE</p>
-            <label class="col-xs-4 control-label">@ResAddressRep.FIELD_ZIPCODE *</label>
-            <div class="col-xs-8">
-                @Html.TextBoxFor(m => m.ZipCode, new {@class = "form-control",ng_model = "ZipCode",zip_search = "",list = "_locations",ng_init = "ZipCode = '" + Model.ZipCode + "'"})
+
+        <div class="col-xs-12">
+            <br />
+            <p class="col-xs-1 element-right" />
+            <p class="col-xs-8 element-left">@ResAddress.TITLE_SELECT_BY_ZIPCODE</p>
+            <p class="col-xs-4 element-left" />
+            <br />
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 element-left">
+
+                    <label class=" col-xs-3 control-label element-left">
+                        *@ResAddressRep.FIELD_ZIPCODE:
+                    </label>
+                    <div class="col-xs-3 element-left">
+                        @Html.TextBoxFor(m => m.CatLocation.ZipCode, new { @class = "form-control", ng_model = "ZipCode", zip_search = "", list = "_locations", ng_init = "ZipCode = '" + Model.CatLocation.ZipCode + "'" })
+                    </div>
+
+                </div>
             </div>
-            <div class="col-xs-6 col-xs-offset-4">
-                <div class="control-label element-left">
-                    @Html.ValidationMessageFor(m => m.ZipCode)
-                    <select id="_select" class="form-control" name="_select" ng-model="selectedLocation"
+            
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 control-label element-center">
+                    <p class="col-xs-3" />
+                    <div class="col-xs-5">
+                        @Html.ValidationMessageFor(m => m.CatLocation.ZipCode)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-xs-offset-1 element-center">
+                    <label class=" col-xs-2 control-label element-left">
+                        *Localidad:
+                    </label>
+                    <select id="_select" class="form-control col-xs-4" name="_select" ng-model="selectedLocation"
                             ng-options="loc as loc.LocationName group by loc.ZipCode for loc in LocZipCodeLst" ng-change="changeLocation()" style="width:320px"></select>
-                    @*<pre>{{selectedLocation}}</pre>*@
+                </div>
+                <div class="col-xs-12">
+                    @Html.HiddenFor(m => m.LocationId, new { ng_model = "LocationId", ng_update_hidden = "", ng_init = "LocationId = '" + (Model.LocationId > 0 ? Model.LocationId.ToString("D") : "0") + "'" })
                 </div>
             </div>
-        </div>
-        <div class="col-xs-6">
-            {{LocationId}}
-            @Html.HiddenFor(m => m.LocationId, new {ng_model = "LocationId", ng_update_hidden = "", ng_init = "LocationId = '" + (Model.LocationId > 0 ? Model.LocationId.ToString("D") : "") + "'"})
+
         </div>
     </div>
+
     <div class="row">
-        <div class="col-xs-6">
-            <label class="col-xs-4 control-label">@ResAddressRep.FIELD_STATE *</label>
-            <div class="col-xs-8">
-                @Html.TextBoxFor(m => m.StateName, new {@class = "form-control", ng_model = "StateName", ng_init = "StateName = '" + Model.StateName + "'"})
-            </div>
-            <div class="col-xs-6 col-xs-offset-4">
-                <div class="control-label element-left">
-                    @Html.ValidationMessageFor(m => m.StateName)
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6">
-            <label class="col-xs-4 control-label">@ResAddressRep.FIELD_MUNICIPALITY *</label>
-            <div class="col-xs-8">
-                @Html.TextBoxFor(m => m.MunicipalityName, new {@class = "form-control", ng_model = "MunicipalityName", ng_init = "MunicipalityName = '" + Model.MunicipalityName + "'"})
-            </div>
-            <div class="col-xs-6 col-xs-offset-4">
-                <div class="control-label element-left">
-                    @Html.ValidationMessageFor(m => m.MunicipalityName)
-                </div>
-            </div>
+        <div class="col-xs-offset-12 col-xs-offset-1">
+            
+            <label class="col-xs-2 control-label element-left">@ResAddressRep.FIELD_STATE:</label>
+
+            <label class="col-xs-3 form-control-static element-left" ng-init="StateName = '@Model.StateName'">
+                {{StateName}}
+            </label>
+
+            <label class="col-xs-2 control-label element-left">@ResAddressRep.FIELD_MUNICIPALITY:</label>
+
+            <label class="col-xs-3 form-control-static element-left" ng-init="MunicipalityName = '@Model.MunicipalityName'">
+                {{MunicipalityName}}
+            </label>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-6">
-            <label class="col-xs-4 control-label">@ResAddressRep.FIELD_LOCATION *</label>
-            <div class="col-xs-8">
-                @Html.TextBoxFor(m => m.LocationName, new { @class = "form-control", ng_model = "LocationName", ng_init = "LocationName = '" + Model.LocationName + "'", style = "width:320px"})
-            </div>
-            <div class="col-xs-6 col-xs-offset-4">
-                <div class="control-label element-left">
-                    @Html.ValidationMessageFor(m => m.LocationName)
-                </div>
-            </div>
-        </div>
-       
+
+
+        <div class="row col-xs-12 col-xs-offset-1">
+
+            <label class="col-xs-2 control-label element-left">@ResAddressRep.FIELD_LOCATION:</label>
+
+            <label class="col-xs-8 form-control-static element-left" ng-init="LocationName = '@Model.LocationName'">
+                {{LocationName}}
+            </label>
+            
     </div>
 </div>

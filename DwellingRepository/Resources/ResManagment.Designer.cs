@@ -88,15 +88,6 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Código postal.
-        /// </summary>
-        public static string FIELD_ZIPCODE {
-            get {
-                return ResourceManager.GetString("FIELD_ZIPCODE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Nivel.
         /// </summary>
         public static string FLOOR_LABEL {
@@ -124,6 +115,24 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Colonia.
+        /// </summary>
+        public static string LOCATION_LABEL {
+            get {
+                return ResourceManager.GetString("LOCATION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Municipio.
+        /// </summary>
+        public static string MUNICIPALITY_LABEL {
+            get {
+                return ResourceManager.GetString("MUNICIPALITY_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre.
         /// </summary>
         public static string NAME_LABEL {
@@ -142,6 +151,15 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string STATE_LABEL {
+            get {
+                return ResourceManager.GetString("STATE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descripción de calle.
         /// </summary>
         public static string STREET_DESCRIPTION_LABEL {
@@ -156,6 +174,15 @@ namespace DwellingRepository.Resources {
         public static string STREET_LABEL {
             get {
                 return ResourceManager.GetString("STREET_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Código postal.
+        /// </summary>
+        public static string ZIPCODE_LABEL {
+            get {
+                return ResourceManager.GetString("ZIPCODE_LABEL", resourceCulture);
             }
         }
     }

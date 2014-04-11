@@ -17,22 +17,22 @@
         <EntityTypeShape EntityType="DwellingModel.DwellingApartment" Width="1.5" PointX="12" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DwellingModel.DwellingHouse" Width="1.5" PointX="15" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DwellingModel.DwellingLocation" Width="1.5" PointX="12" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="DwellingModel.DwellingRel" Width="1.5" PointX="9.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DwellingModel.Street" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DwellingModel.VwDwellingData" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="DwellingModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
         <AssociationConnector Association="DwellingModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="DwellingModel.FK_Building_Street" ManuallyRouted="false" />
         <AssociationConnector Association="DwellingModel.FK_DwellingApartment_Building" ManuallyRouted="false" />
         <AssociationConnector Association="DwellingModel.FK_State_Country" ManuallyRouted="false" />
-        <AssociationConnector Association="DwellingModel.FK_Dwelling_CatLocation" ManuallyRouted="false" />
         <AssociationConnector Association="DwellingModel.FK_Location_Municipality" ManuallyRouted="false" />
         <AssociationConnector Association="DwellingModel.FK_Municipality_State" ManuallyRouted="false" />
-        <AssociationConnector Association="DwellingModel.FK_DwellingApartment_Dwelling" ManuallyRouted="false" />
-        <AssociationConnector Association="DwellingModel.FK_DwellingHouse_Dwelling" ManuallyRouted="false" />
         <AssociationConnector Association="DwellingModel.FK_DwellingHouse_Street" ManuallyRouted="false" />
-        <AssociationConnector Association="DwellingModel.FK_DwellingLocation_Dwelling" ManuallyRouted="false" />
         <AssociationConnector Association="DwellingModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DwellingModel.DwellingRel" Width="1.5" PointX="9.75" PointY="4.5" />
+        <AssociationConnector Association="DwellingModel.FK_Dwelling_CatLocation" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingApartment_Dwelling" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingHouse_Dwelling" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingLocation_Dwelling" />
+        <EntityTypeShape EntityType="DwellingModel.VwDwellingData" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

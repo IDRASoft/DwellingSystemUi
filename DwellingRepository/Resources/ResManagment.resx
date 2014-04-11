@@ -126,9 +126,6 @@
   <data name="BUILDING_LABEL" xml:space="preserve">
     <value>Edificio</value>
   </data>
-  <data name="FIELD_ZIPCODE" xml:space="preserve">
-    <value>Código postal</value>
-  </data>
   <data name="FLOOR_LABEL" xml:space="preserve">
     <value>Nivel</value>
   </data>
@@ -138,16 +135,28 @@
   <data name="INNER_NUMBER_LABEL" xml:space="preserve">
     <value>Numero interior</value>
   </data>
+  <data name="LOCATION_LABEL" xml:space="preserve">
+    <value>Colonia</value>
+  </data>
+  <data name="MUNICIPALITY_LABEL" xml:space="preserve">
+    <value>Municipio</value>
+  </data>
   <data name="NAME_LABEL" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="OUTER_NUMBER_LABEL" xml:space="preserve">
     <value>Número exterior</value>
   </data>
+  <data name="STATE_LABEL" xml:space="preserve">
+    <value>Estado</value>
+  </data>
   <data name="STREET_DESCRIPTION_LABEL" xml:space="preserve">
     <value>Descripción de calle</value>
   </data>
   <data name="STREET_LABEL" xml:space="preserve">
     <value>Calle</value>
+  </data>
+  <data name="ZIPCODE_LABEL" xml:space="preserve">
+    <value>Código postal</value>
   </data>
 </root>

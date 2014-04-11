@@ -37,8 +37,8 @@ namespace DwellingRepository.Database
         public virtual DbSet<DwellingApartment> DwellingApartment { get; set; }
         public virtual DbSet<DwellingHouse> DwellingHouse { get; set; }
         public virtual DbSet<DwellingLocation> DwellingLocation { get; set; }
-        public virtual DbSet<DwellingRel> DwellingRel { get; set; }
         public virtual DbSet<Street> Street { get; set; }
+        public virtual DbSet<DwellingRel> DwellingRel { get; set; }
         public virtual DbSet<VwDwellingData> VwDwellingData { get; set; }
     }
 }

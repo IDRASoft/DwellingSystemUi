@@ -26,7 +26,7 @@ namespace DwellingRepository.Database
         public string Description { get; set; }
         public string ZipCode { get; set; }
     
-        public virtual ICollection<DwellingRel> DwellingRel { get; set; }
         public virtual CatMunicipality CatMunicipality { get; set; }
+        public virtual ICollection<DwellingRel> DwellingRel { get; set; }
     }
 }

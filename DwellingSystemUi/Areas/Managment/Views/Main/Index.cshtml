@@ -14,22 +14,53 @@
     <script src="~/Scripts/App/address/addressCtrl.js"></script>
     <script src="~/Scripts/App/Shared/hiddenDrct.js"></script>
     <script src="~/Scripts/App/address/zipSearchDrct.js"></script>
+    
+    
 
     <script>
 
         var lastsel;
-        var upsert = function (id) {
+        var upsert = function(id) {
             window.showUpsert(id, "#angJsjqGridId", "@Url.Action("Upsert", "Main", new {area = "Managment"})", "#GridDwelling");
         };
-        @* var obsolete = function (id) {
-                    window.showObsolete(id, "#angJsjqGridId", "@Url.Action("DoObsolete", "CatMeasure", New With {.area = "Administration"})", "#GridCatUnitMeasuredId");
-        };*@
+        
+        var obsolete = function (id) {
+            window.showObsolete(id, "#angJsjqGridId", "@Url.Action("DoObsolete", "Main", new {area = "Managment"})", "#GridDwelling");
+        };
+
+        app.controller('UpsertDwellingCtrl', function($scope, $timeout) {
+
+            $scope.streetList = @Html.Raw(ViewBag.StreetList);
+
+            $scope.streetModel = "";
+
+            function initStreet() {
+                if ($scope.StreetId > 0) {
+                    for (var a = 0; a < $scope.streetList.length; a++) {
+                        if ($scope.StreetId == $scope.streetList[a].KeyId) {
+                            $scope.streetModel = $scope.streetList[a];
+                        }
+                    }
+                } else {
+                    $scope.streetModel = $scope.streetList[0];
+                    $scope.StreetId = $scope.streetModel.KeyId;
+                }
+            };
+
+            $scope.onChangeStreet = function() {
+                $scope.StreetId = $scope.streetModel.KeyId;
+            };
 
 
-        $(document).ready(function () {
+            $timeout(function(){
+                initStreet();
+            }, 1);
+        });
+
+        $(document).ready(function() {
 
             jQuery("#GridDwelling").jqGrid({
-                url: '@Url.Action("List", "Main", new { area = "Managment"})',
+                url: '@Url.Action("List", "Main", new {area = "Managment"})',
                 datatype: "json",
                 mtype: 'POST',
                 colNames: ['ID', 'Dirección', 'Tipo', 'Acciones'],
@@ -49,7 +80,7 @@
                 shrinkToFit: false,
                 sortorder: "desc",
                 caption: "@ResShared.TITLE_MENU_DWELLING",
-                gridComplete: function () {
+                gridComplete: function() {
                     var ids = $(this).jqGrid('getDataIDs');
                     for (var i = 0; i < ids.length; i++) {
                         var cl = ids[i];
@@ -58,7 +89,7 @@
                         $(this).jqGrid('setRowData', ids[i], { Action: be + bo });
                     }
                 },
-                ondblClickRow: function (rowid) {
+                ondblClickRow: function(rowid) {
                     //upsert.call(this, rowid);
                 }
             });
@@ -73,6 +104,7 @@
                 multipleSearch: true,
                 ignoreCase: true
             });
+
         });
 
     </script>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DwellingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DwellingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -138,6 +138,7 @@
           <Property Name="DwellingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LocationId" Type="int" Nullable="false" />
           <Property Name="IsObsolete" Type="bit" Nullable="false" />
+          <Property Name="IsApartment" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Street">
           <Key>
@@ -154,7 +155,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             <PropertyRef Name="DwellingId" />
           </Key>
           <Property Name="DwellingId" Type="int" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="164" />
+          <Property Name="Address" Type="varchar" MaxLength="170" />
           <Property Name="DwellingType" Type="varchar" MaxLength="12" />
         </EntityType>
         <Association Name="FK_Building_Street">
@@ -413,8 +414,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             <End Role="CatState" EntitySet="CatState" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DwellingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -491,8 +491,8 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="Abbreviation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ZipCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="DwellingRel" Relationship="Self.FK_Dwelling_CatLocation" FromRole="CatLocation" ToRole="DwellingRel" />
           <NavigationProperty Name="CatMunicipality" Relationship="Self.FK_Location_Municipality" FromRole="CatLocation" ToRole="CatMunicipality" />
+          <NavigationProperty Name="DwellingRel" Relationship="DwellingModel.FK_Dwelling_CatLocation" FromRole="CatLocation" ToRole="DwellingRel" />
         </EntityType>
         <EntityType Name="CatMunicipality">
           <Key>
@@ -529,7 +529,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="Floor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Building" Relationship="Self.FK_DwellingApartment_Building" FromRole="DwellingApartment" ToRole="Building" />
-          <NavigationProperty Name="DwellingRel" Relationship="Self.FK_DwellingApartment_Dwelling" FromRole="DwellingApartment" ToRole="DwellingRel" />
+          <NavigationProperty Name="DwellingRel" Relationship="DwellingModel.FK_DwellingApartment_Dwelling" FromRole="DwellingApartment" ToRole="DwellingRel" />
         </EntityType>
         <EntityType Name="DwellingHouse">
           <Key>
@@ -540,8 +540,8 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="StreetId" Type="Int32" Nullable="false" />
           <Property Name="OuterNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="DwellingRel" Relationship="Self.FK_DwellingHouse_Dwelling" FromRole="DwellingHouse" ToRole="DwellingRel" />
           <NavigationProperty Name="Street" Relationship="Self.FK_DwellingHouse_Street" FromRole="DwellingHouse" ToRole="Street" />
+          <NavigationProperty Name="DwellingRel" Relationship="DwellingModel.FK_DwellingHouse_Dwelling" FromRole="DwellingHouse" ToRole="DwellingRel" />
         </EntityType>
         <EntityType Name="DwellingLocation">
           <Key>
@@ -554,19 +554,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="BuildingImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Coordinates" Type="Geometry" Nullable="false" />
           <Property Name="Floor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DwellingRel" Relationship="Self.FK_DwellingLocation_Dwelling" FromRole="DwellingLocation" ToRole="DwellingRel" />
-        </EntityType>
-        <EntityType Name="DwellingRel">
-          <Key>
-            <PropertyRef Name="DwellingId" />
-          </Key>
-          <Property Name="DwellingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LocationId" Type="Int32" Nullable="false" />
-          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CatLocation" Relationship="Self.FK_Dwelling_CatLocation" FromRole="DwellingRel" ToRole="CatLocation" />
-          <NavigationProperty Name="DwellingApartment" Relationship="Self.FK_DwellingApartment_Dwelling" FromRole="DwellingRel" ToRole="DwellingApartment" />
-          <NavigationProperty Name="DwellingHouse" Relationship="Self.FK_DwellingHouse_Dwelling" FromRole="DwellingRel" ToRole="DwellingHouse" />
-          <NavigationProperty Name="DwellingLocation" Relationship="Self.FK_DwellingLocation_Dwelling" FromRole="DwellingRel" ToRole="DwellingLocation" />
+          <NavigationProperty Name="DwellingRel" Relationship="DwellingModel.FK_DwellingLocation_Dwelling" FromRole="DwellingLocation" ToRole="DwellingRel" />
         </EntityType>
         <EntityType Name="Street">
           <Key>
@@ -577,14 +565,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Building" Relationship="Self.FK_Building_Street" FromRole="Street" ToRole="Building" />
           <NavigationProperty Name="DwellingHouse" Relationship="Self.FK_DwellingHouse_Street" FromRole="Street" ToRole="DwellingHouse" />
-        </EntityType>
-        <EntityType Name="VwDwellingData">
-          <Key>
-            <PropertyRef Name="DwellingId" />
-          </Key>
-          <Property Name="DwellingId" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="164" FixedLength="false" Unicode="false" />
-          <Property Name="DwellingType" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -650,18 +630,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Dwelling_CatLocation">
-          <End Role="CatLocation" Type="Self.CatLocation" Multiplicity="1" />
-          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CatLocation">
-              <PropertyRef Name="LocationId" />
-            </Principal>
-            <Dependent Role="DwellingRel">
-              <PropertyRef Name="LocationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Location_Municipality">
           <End Role="CatMunicipality" Type="Self.CatMunicipality" Multiplicity="1" />
           <End Role="CatLocation" Type="Self.CatLocation" Multiplicity="*" />
@@ -686,30 +654,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DwellingApartment_Dwelling">
-          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
-          <End Role="DwellingApartment" Type="Self.DwellingApartment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DwellingRel">
-              <PropertyRef Name="DwellingId" />
-            </Principal>
-            <Dependent Role="DwellingApartment">
-              <PropertyRef Name="DwellingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DwellingHouse_Dwelling">
-          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
-          <End Role="DwellingHouse" Type="Self.DwellingHouse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DwellingRel">
-              <PropertyRef Name="DwellingId" />
-            </Principal>
-            <Dependent Role="DwellingHouse">
-              <PropertyRef Name="DwellingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DwellingHouse_Street">
           <End Role="Street" Type="Self.Street" Multiplicity="1" />
           <End Role="DwellingHouse" Type="Self.DwellingHouse" Multiplicity="*" />
@@ -719,18 +663,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             </Principal>
             <Dependent Role="DwellingHouse">
               <PropertyRef Name="StreetId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DwellingLocation_Dwelling">
-          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
-          <End Role="DwellingLocation" Type="Self.DwellingLocation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DwellingRel">
-              <PropertyRef Name="DwellingId" />
-            </Principal>
-            <Dependent Role="DwellingLocation">
-              <PropertyRef Name="DwellingId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -751,9 +683,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <EntitySet Name="DwellingApartment" EntityType="Self.DwellingApartment" />
           <EntitySet Name="DwellingHouse" EntityType="Self.DwellingHouse" />
           <EntitySet Name="DwellingLocation" EntityType="Self.DwellingLocation" />
-          <EntitySet Name="DwellingRel" EntityType="Self.DwellingRel" />
           <EntitySet Name="Street" EntityType="Self.Street" />
-          <EntitySet Name="VwDwellingData" EntityType="Self.VwDwellingData" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -774,10 +704,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             <End Role="CatCountry" EntitySet="CatCountry" />
             <End Role="CatState" EntitySet="CatState" />
           </AssociationSet>
-          <AssociationSet Name="FK_Dwelling_CatLocation" Association="Self.FK_Dwelling_CatLocation">
-            <End Role="CatLocation" EntitySet="CatLocation" />
-            <End Role="DwellingRel" EntitySet="DwellingRel" />
-          </AssociationSet>
           <AssociationSet Name="FK_Location_Municipality" Association="Self.FK_Location_Municipality">
             <End Role="CatMunicipality" EntitySet="CatMunicipality" />
             <End Role="CatLocation" EntitySet="CatLocation" />
@@ -786,27 +712,102 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             <End Role="CatState" EntitySet="CatState" />
             <End Role="CatMunicipality" EntitySet="CatMunicipality" />
           </AssociationSet>
-          <AssociationSet Name="FK_DwellingApartment_Dwelling" Association="Self.FK_DwellingApartment_Dwelling">
-            <End Role="DwellingRel" EntitySet="DwellingRel" />
-            <End Role="DwellingApartment" EntitySet="DwellingApartment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DwellingHouse_Dwelling" Association="Self.FK_DwellingHouse_Dwelling">
-            <End Role="DwellingRel" EntitySet="DwellingRel" />
-            <End Role="DwellingHouse" EntitySet="DwellingHouse" />
-          </AssociationSet>
           <AssociationSet Name="FK_DwellingHouse_Street" Association="Self.FK_DwellingHouse_Street">
             <End Role="Street" EntitySet="Street" />
             <End Role="DwellingHouse" EntitySet="DwellingHouse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DwellingLocation_Dwelling" Association="Self.FK_DwellingLocation_Dwelling">
-            <End Role="DwellingRel" EntitySet="DwellingRel" />
-            <End Role="DwellingLocation" EntitySet="DwellingLocation" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="DwellingRel" EntityType="DwellingModel.DwellingRel" />
+          <AssociationSet Name="FK_Dwelling_CatLocation" Association="DwellingModel.FK_Dwelling_CatLocation">
+            <End Role="CatLocation" EntitySet="CatLocation" />
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingApartment_Dwelling" Association="DwellingModel.FK_DwellingApartment_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingApartment" EntitySet="DwellingApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingHouse_Dwelling" Association="DwellingModel.FK_DwellingHouse_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingHouse" EntitySet="DwellingHouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingLocation_Dwelling" Association="DwellingModel.FK_DwellingLocation_Dwelling">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingLocation" EntitySet="DwellingLocation" />
+          </AssociationSet>
+          <EntitySet Name="VwDwellingData" EntityType="DwellingModel.VwDwellingData" />
         </EntityContainer>
+        <EntityType Name="DwellingRel">
+          <Key>
+            <PropertyRef Name="DwellingId" />
+          </Key>
+          <Property Name="DwellingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
+          <Property Name="IsApartment" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CatLocation" Relationship="DwellingModel.FK_Dwelling_CatLocation" FromRole="DwellingRel" ToRole="CatLocation" />
+          <NavigationProperty Name="DwellingApartment" Relationship="DwellingModel.FK_DwellingApartment_Dwelling" FromRole="DwellingRel" ToRole="DwellingApartment" />
+          <NavigationProperty Name="DwellingHouse" Relationship="DwellingModel.FK_DwellingHouse_Dwelling" FromRole="DwellingRel" ToRole="DwellingHouse" />
+          <NavigationProperty Name="DwellingLocation" Relationship="DwellingModel.FK_DwellingLocation_Dwelling" FromRole="DwellingRel" ToRole="DwellingLocation" />
+        </EntityType>
+        <Association Name="FK_Dwelling_CatLocation">
+          <End Type="DwellingModel.CatLocation" Role="CatLocation" Multiplicity="1" />
+          <End Type="DwellingModel.DwellingRel" Role="DwellingRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="DwellingRel">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingApartment_Dwelling">
+          <End Type="DwellingModel.DwellingRel" Role="DwellingRel" Multiplicity="1" />
+          <End Type="DwellingModel.DwellingApartment" Role="DwellingApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingApartment">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingHouse_Dwelling">
+          <End Type="DwellingModel.DwellingRel" Role="DwellingRel" Multiplicity="1" />
+          <End Type="DwellingModel.DwellingHouse" Role="DwellingHouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingHouse">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingLocation_Dwelling">
+          <End Type="DwellingModel.DwellingRel" Role="DwellingRel" Multiplicity="1" />
+          <End Type="DwellingModel.DwellingLocation" Role="DwellingLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingLocation">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VwDwellingData">
+          <Key>
+            <PropertyRef Name="DwellingId" />
+          </Key>
+          <Property Name="DwellingId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="170" FixedLength="false" Unicode="false" />
+          <Property Name="DwellingType" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -941,30 +942,12 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DwellingRel">
-            <EntityTypeMapping TypeName="DwellingModel.DwellingRel">
-              <MappingFragment StoreEntitySet="DwellingRel">
-                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Street">
             <EntityTypeMapping TypeName="DwellingModel.Street">
               <MappingFragment StoreEntitySet="Street">
                 <ScalarProperty Name="StreetId" ColumnName="StreetId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VwDwellingData">
-            <EntityTypeMapping TypeName="DwellingModel.VwDwellingData">
-              <MappingFragment StoreEntitySet="VwDwellingData">
-                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="DwellingType" ColumnName="DwellingType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -976,6 +959,25 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="DwellingRel">
+            <EntityTypeMapping TypeName="DwellingModel.DwellingRel">
+              <MappingFragment StoreEntitySet="DwellingRel">
+                <ScalarProperty Name="IsApartment" ColumnName="IsApartment" />
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwDwellingData">
+            <EntityTypeMapping TypeName="DwellingModel.VwDwellingData">
+              <MappingFragment StoreEntitySet="VwDwellingData">
+                <ScalarProperty Name="DwellingType" ColumnName="DwellingType" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

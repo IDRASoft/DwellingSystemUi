@@ -274,7 +274,7 @@ html {
 }
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #666666;
   background-color: #ffffff;
@@ -1690,10 +1690,10 @@ output {
 }
 .form-control {
   display: block;
-  width: 100%;
-  height: 38px;
+  width: 80%;
+  height: 35px;
   padding: 8px 12px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #666666;
   background-color: #ffffff;
