@@ -19,6 +19,7 @@ namespace DwellingRepository.Database
             this.DwellingApartment = new HashSet<DwellingApartment>();
             this.DwellingHouse = new HashSet<DwellingHouse>();
             this.DwellingLocation = new HashSet<DwellingLocation>();
+            this.DwellingResidentRel = new HashSet<DwellingResidentRel>();
         }
     
         public int DwellingId { get; set; }
@@ -30,5 +31,6 @@ namespace DwellingRepository.Database
         public virtual ICollection<DwellingApartment> DwellingApartment { get; set; }
         public virtual ICollection<DwellingHouse> DwellingHouse { get; set; }
         public virtual ICollection<DwellingLocation> DwellingLocation { get; set; }
+        public virtual ICollection<DwellingResidentRel> DwellingResidentRel { get; set; }
     }
 }

@@ -88,11 +88,47 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tipo de documento.
+        /// </summary>
+        public static string DOCUMENT_TYPE_LABEL {
+            get {
+                return ResourceManager.GetString("DOCUMENT_TYPE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nivel.
         /// </summary>
         public static string FLOOR_LABEL {
             get {
                 return ResourceManager.GetString("FLOOR_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Femenino.
+        /// </summary>
+        public static string GENDER_FEMALE_LABEL {
+            get {
+                return ResourceManager.GetString("GENDER_FEMALE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Género.
+        /// </summary>
+        public static string GENDER_LABEL {
+            get {
+                return ResourceManager.GetString("GENDER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Masculino.
+        /// </summary>
+        public static string GENDER_MALE_LABEL {
+            get {
+                return ResourceManager.GetString("GENDER_MALE_LABEL", resourceCulture);
             }
         }
         
@@ -111,6 +147,15 @@ namespace DwellingRepository.Resources {
         public static string INNER_NUMBER_LABEL {
             get {
                 return ResourceManager.GetString("INNER_NUMBER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apellido(s).
+        /// </summary>
+        public static string LASTNAME_LABEL {
+            get {
+                return ResourceManager.GetString("LASTNAME_LABEL", resourceCulture);
             }
         }
         
@@ -142,11 +187,38 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nombre(s).
+        /// </summary>
+        public static string NAMES_LABEL {
+            get {
+                return ResourceManager.GetString("NAMES_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Número exterior.
         /// </summary>
         public static string OUTER_NUMBER_LABEL {
             get {
                 return ResourceManager.GetString("OUTER_NUMBER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datos del residente.
+        /// </summary>
+        public static string RESIDENT_DATA_LABEL {
+            get {
+                return ResourceManager.GetString("RESIDENT_DATA_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Residente.
+        /// </summary>
+        public static string RESIDENT_LABEL {
+            get {
+                return ResourceManager.GetString("RESIDENT_LABEL", resourceCulture);
             }
         }
         

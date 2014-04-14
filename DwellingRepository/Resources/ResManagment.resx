@@ -126,8 +126,20 @@
   <data name="BUILDING_LABEL" xml:space="preserve">
     <value>Edificio</value>
   </data>
+  <data name="DOCUMENT_TYPE_LABEL" xml:space="preserve">
+    <value>Tipo de documento</value>
+  </data>
   <data name="FLOOR_LABEL" xml:space="preserve">
     <value>Nivel</value>
+  </data>
+  <data name="GENDER_FEMALE_LABEL" xml:space="preserve">
+    <value>Femenino</value>
+  </data>
+  <data name="GENDER_LABEL" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="GENDER_MALE_LABEL" xml:space="preserve">
+    <value>Masculino</value>
   </data>
   <data name="HOUSE_LABEL" xml:space="preserve">
     <value>Casa</value>
@@ -135,17 +147,29 @@
   <data name="INNER_NUMBER_LABEL" xml:space="preserve">
     <value>Numero interior</value>
   </data>
+  <data name="LASTNAME_LABEL" xml:space="preserve">
+    <value>Apellido(s)</value>
+  </data>
   <data name="LOCATION_LABEL" xml:space="preserve">
     <value>Colonia</value>
   </data>
   <data name="MUNICIPALITY_LABEL" xml:space="preserve">
     <value>Municipio</value>
   </data>
+  <data name="NAMES_LABEL" xml:space="preserve">
+    <value>Nombre(s)</value>
+  </data>
   <data name="NAME_LABEL" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="OUTER_NUMBER_LABEL" xml:space="preserve">
     <value>Número exterior</value>
+  </data>
+  <data name="RESIDENT_DATA_LABEL" xml:space="preserve">
+    <value>Datos del residente</value>
+  </data>
+  <data name="RESIDENT_LABEL" xml:space="preserve">
+    <value>Residente</value>
   </data>
   <data name="STATE_LABEL" xml:space="preserve">
     <value>Estado</value>

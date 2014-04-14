@@ -40,5 +40,8 @@ namespace DwellingRepository.Database
         public virtual DbSet<Street> Street { get; set; }
         public virtual DbSet<DwellingRel> DwellingRel { get; set; }
         public virtual DbSet<VwDwellingData> VwDwellingData { get; set; }
+        public virtual DbSet<DocumentType> DocumentType { get; set; }
+        public virtual DbSet<DwellingResidentRel> DwellingResidentRel { get; set; }
+        public virtual DbSet<Resident> Resident { get; set; }
     }
 }

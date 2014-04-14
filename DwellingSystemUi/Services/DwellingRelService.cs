@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Web.Mvc;
+using DwellingRepository.Common;
 using DwellingRepository.Database;
 using DwellingRepository.Models.Shared;
 using DwellingSystemUi.Resources;
@@ -58,6 +60,45 @@ namespace DwellingSystemUi.Services
                            Title = ResShared.TITLE_REGISTER_FAILED,
                            Message = ResShared.ERROR_UNKOWN
                        };
+            }
+        }
+
+        public ResponseMessageModel DoObsolete(int id)
+        {
+            try
+            {
+                var modelDb = new GenericRepository<DwellingRel>(_db).FindById(id);
+
+                if (modelDb == null)
+                {
+                    return new ResponseMessageModel
+                    {
+                        HasError = true,
+                        Title = ResShared.TITLE_OBSOLETE_FAILED,
+                        Message = ResShared.ERROR_MODEL_NOTFOUND
+                    };
+                }
+
+                modelDb.IsObsolete = true;
+                _db.SaveChanges();
+
+                return new ResponseMessageModel
+                {
+                    HasError = false,
+                    Title = ResShared.TITLE_OBSOLETE_SUCCESS,
+                    Message = ResShared.INFO_REGISTER_SAVED
+                };
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return new ResponseMessageModel
+                {
+                    HasError = true,
+                    Title = ResShared.TITLE_OBSOLETE_FAILED,
+                    Message = ResShared.ERROR_UNKOWN
+                };
             }
         }
 

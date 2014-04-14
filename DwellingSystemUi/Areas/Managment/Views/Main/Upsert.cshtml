@@ -42,7 +42,8 @@
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-xs-12" ng-controller="UpsertDwellingCtrl">
+                            
+                            <div class="col-xs-12" ng-controller="UpsertDwellingCtrl" ng-init='streetList = @(Html.Raw(ViewBag.StreetList))'>
                                 <label class="control-label col-xs-2">
                                     @ResManagment.STREET_LABEL:
                                 </label>

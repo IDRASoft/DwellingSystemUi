@@ -14,8 +14,7 @@
     <script src="~/Scripts/App/address/addressCtrl.js"></script>
     <script src="~/Scripts/App/Shared/hiddenDrct.js"></script>
     <script src="~/Scripts/App/address/zipSearchDrct.js"></script>
-    
-    
+    <script src="~/Scripts/App/Managment/DwellingCtrl.js"></script>
 
     <script>
 
@@ -27,35 +26,11 @@
         var obsolete = function (id) {
             window.showObsolete(id, "#angJsjqGridId", "@Url.Action("DoObsolete", "Main", new {area = "Managment"})", "#GridDwelling");
         };
-
-        app.controller('UpsertDwellingCtrl', function($scope, $timeout) {
-
-            $scope.streetList = @Html.Raw(ViewBag.StreetList);
-
-            $scope.streetModel = "";
-
-            function initStreet() {
-                if ($scope.StreetId > 0) {
-                    for (var a = 0; a < $scope.streetList.length; a++) {
-                        if ($scope.StreetId == $scope.streetList[a].KeyId) {
-                            $scope.streetModel = $scope.streetList[a];
-                        }
-                    }
-                } else {
-                    $scope.streetModel = $scope.streetList[0];
-                    $scope.StreetId = $scope.streetModel.KeyId;
-                }
-            };
-
-            $scope.onChangeStreet = function() {
-                $scope.StreetId = $scope.streetModel.KeyId;
-            };
-
-
-            $timeout(function(){
-                initStreet();
-            }, 1);
-        });
+        
+        var upsertResident= function(id) {
+            window.showUpsert(id, "#angJsjqGridId", "@Url.Action("Upsert", "Resident", new {area = "Managment"})", "#GridDwelling");
+        };
+        
 
         $(document).ready(function() {
 
@@ -85,8 +60,9 @@
                     for (var i = 0; i < ids.length; i++) {
                         var cl = ids[i];
                         be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Editar vivienda\" onclick=\"upsert('" + cl + "');\"><span class=\"ui-icon ui-icon-pencil\"></span></a>";
-                        bo = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar unidad de medida\" onclick=\"obsolete('" + cl + "');\"><span class=\"ui-icon ui-icon-trash\"></span></a>";
-                        $(this).jqGrid('setRowData', ids[i], { Action: be + bo });
+                        bo = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar vivienda\" onclick=\"obsolete('" + cl + "');\"><span class=\"ui-icon ui-icon-trash\"></span></a>";
+                        br = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Agregar residente\" onclick=\"upsertResident();\"><span class=\"ui-icon ui-icon-person\"></span></a>";
+                        $(this).jqGrid('setRowData', ids[i], { Action: be + bo+ br });
                     }
                 },
                 ondblClickRow: function(rowid) {
@@ -116,6 +92,6 @@
 
     <table id="GridDwelling" class="element-center"></table>
     <div id="GridDwellingPager"></div>
-    <div class="blocker" ng-show="working"><div>Cargando...<img src="http://www.socialups.com/static/images/fbinventory/ajax_loader.gif"></div></div>
+    <div class="blocker" ng-show="working"><div>Cargando...<img src="../../../../Content/Images/icons/ajax_loader.gif"></div></div>
 
 </div>

@@ -1,4 +1,4 @@
-﻿namespace DwellingRepository.Models
+﻿namespace DwellingRepository.Models.Shared
 {
     public class ZipCodeLocationModel
     {

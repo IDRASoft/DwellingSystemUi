@@ -15,11 +15,9 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
 {
     public class MainController : BaseController
     {
-        //
-        // GET: /Managment/Home/
+     
         public ActionResult Index()
         {
-            ViewBag.StreetList = new JavaScriptSerializer().Serialize(CatalogRepository.GetStreetCat(Db));
             ViewBag.PrevStreetId = 0;
             return View();
         }
@@ -48,6 +46,7 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
                 ViewBag.PrevStreetId = 0;
             }
 
+            ViewBag.StreetList = new JavaScriptSerializer().Serialize(CatalogRepository.GetStreetCat(Db));
             return View(model);
         }
 
@@ -109,41 +108,8 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
         [HttpPost]
         public ActionResult DoObsolete(int id)
         {
-            try
-            {
-                var modelDb = new GenericRepository<DwellingRel>(Db).FindById(id);
-                
-                if (modelDb == null)
-                {
-                    return Json(new ResponseMessageModel
-                                {
-                                    HasError = true,
-                                    Title = ResShared.TITLE_OBSOLETE_FAILED,
-                                    Message = ResShared.ERROR_MODEL_NOTFOUND
-                                });
-                }
-
-                modelDb.IsObsolete = true;
-                Db.SaveChanges();
-
-                return Json(new ResponseMessageModel
-                            {
-                                HasError = false,
-                                Title = ResShared.TITLE_OBSOLETE_SUCCESS,
-                                Message = ResShared.INFO_REGISTER_SAVED
-                            });
-
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return Json(new ResponseMessageModel
-                            {
-                                HasError = true,
-                                Title = ResShared.TITLE_OBSOLETE_FAILED,
-                                Message = ResShared.ERROR_UNKOWN
-                            });
-            }
+            var dwellingSvc = new DwellingRelService(Db);
+            return Json(dwellingSvc.DoObsolete(id));
         }
     }
 }

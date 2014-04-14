@@ -31,13 +31,22 @@ namespace DwellingRepository.Catalogs
 
         }
 
-        public static List<StreetComboBoxModel> GetStreetCat(DwellingEntities db)
+        public static List<ComboBoxModel> GetStreetCat(DwellingEntities db)
         {
-            return db.Street.Select(e => new StreetComboBoxModel()
+            return db.Street.Select(e => new ComboBoxModel()
                                          {
                                              KeyId = e.StreetId,
                                              Value = e.Name
                                          }).ToList().OrderBy(e=>e.Value).ToList();
+        }
+
+        public static List<ComboBoxModel> GetDocumentTypeCat(DwellingEntities db)
+        {
+            return db.DocumentType.Select(e => new ComboBoxModel()
+            {
+                KeyId = e.DocumentTypeId,
+                Value = e.Name
+            }).ToList().OrderBy(e => e.Value).ToList();
         }
     }
 }
