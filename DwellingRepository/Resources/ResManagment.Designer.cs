@@ -79,6 +79,15 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha de nacimiento.
+        /// </summary>
+        public static string BIRTHDAY_LABEL {
+            get {
+                return ResourceManager.GetString("BIRTHDAY_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edificio.
         /// </summary>
         public static string BUILDING_LABEL {
@@ -88,11 +97,47 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tipo de documento.
+        ///   Looks up a localized string similar to Comentarios.
+        /// </summary>
+        public static string COMMENTS_LABEL {
+            get {
+                return ResourceManager.GetString("COMMENTS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Número de identificación:.
+        /// </summary>
+        public static string DOCUMENT_NUMBER_LABEL {
+            get {
+                return ResourceManager.GetString("DOCUMENT_NUMBER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de identificación.
         /// </summary>
         public static string DOCUMENT_TYPE_LABEL {
             get {
                 return ResourceManager.GetString("DOCUMENT_TYPE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correo eléctronico.
+        /// </summary>
+        public static string EMAIL_LABEL {
+            get {
+                return ResourceManager.GetString("EMAIL_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correo eléctronico 2.
+        /// </summary>
+        public static string EMAIL2_LABEL {
+            get {
+                return ResourceManager.GetString("EMAIL2_LABEL", resourceCulture);
             }
         }
         
@@ -169,6 +214,24 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Móvil.
+        /// </summary>
+        public static string MOBILE_LABEL {
+            get {
+                return ResourceManager.GetString("MOBILE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Móvil 2.
+        /// </summary>
+        public static string MOBILE2_LABEL {
+            get {
+                return ResourceManager.GetString("MOBILE2_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Municipio.
         /// </summary>
         public static string MUNICIPALITY_LABEL {
@@ -196,11 +259,29 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Número de oficina.
+        /// </summary>
+        public static string OFFICE_NUMBER_LABEL {
+            get {
+                return ResourceManager.GetString("OFFICE_NUMBER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Número exterior.
         /// </summary>
         public static string OUTER_NUMBER_LABEL {
             get {
                 return ResourceManager.GetString("OUTER_NUMBER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teléfono.
+        /// </summary>
+        public static string PHONE_LABEL {
+            get {
+                return ResourceManager.GetString("PHONE_LABEL", resourceCulture);
             }
         }
         

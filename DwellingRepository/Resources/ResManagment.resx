@@ -123,11 +123,26 @@
   <data name="APARMENT_LABEL" xml:space="preserve">
     <value>Departamento</value>
   </data>
+  <data name="BIRTHDAY_LABEL" xml:space="preserve">
+    <value>Fecha de nacimiento</value>
+  </data>
   <data name="BUILDING_LABEL" xml:space="preserve">
     <value>Edificio</value>
   </data>
+  <data name="COMMENTS_LABEL" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="DOCUMENT_NUMBER_LABEL" xml:space="preserve">
+    <value>Número de identificación:</value>
+  </data>
   <data name="DOCUMENT_TYPE_LABEL" xml:space="preserve">
-    <value>Tipo de documento</value>
+    <value>Tipo de identificación</value>
+  </data>
+  <data name="EMAIL2_LABEL" xml:space="preserve">
+    <value>Correo eléctronico 2</value>
+  </data>
+  <data name="EMAIL_LABEL" xml:space="preserve">
+    <value>Correo eléctronico</value>
   </data>
   <data name="FLOOR_LABEL" xml:space="preserve">
     <value>Nivel</value>
@@ -153,6 +168,12 @@
   <data name="LOCATION_LABEL" xml:space="preserve">
     <value>Colonia</value>
   </data>
+  <data name="MOBILE2_LABEL" xml:space="preserve">
+    <value>Móvil 2</value>
+  </data>
+  <data name="MOBILE_LABEL" xml:space="preserve">
+    <value>Móvil</value>
+  </data>
   <data name="MUNICIPALITY_LABEL" xml:space="preserve">
     <value>Municipio</value>
   </data>
@@ -162,8 +183,14 @@
   <data name="NAME_LABEL" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="OFFICE_NUMBER_LABEL" xml:space="preserve">
+    <value>Número de oficina</value>
+  </data>
   <data name="OUTER_NUMBER_LABEL" xml:space="preserve">
     <value>Número exterior</value>
+  </data>
+  <data name="PHONE_LABEL" xml:space="preserve">
+    <value>Teléfono</value>
   </data>
   <data name="RESIDENT_DATA_LABEL" xml:space="preserve">
     <value>Datos del residente</value>
