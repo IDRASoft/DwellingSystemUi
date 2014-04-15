@@ -33,6 +33,12 @@
         <AssociationConnector Association="DwellingModel.FK_DwellingHouse_Dwelling" />
         <AssociationConnector Association="DwellingModel.FK_DwellingLocation_Dwelling" />
         <EntityTypeShape EntityType="DwellingModel.VwDwellingData" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DwellingModel.DocumentType" Width="1.5" PointX="0.75" PointY="16.25" />
+        <EntityTypeShape EntityType="DwellingModel.DwellingResidentRel" Width="1.5" PointX="12.375" PointY="7.875" />
+        <EntityTypeShape EntityType="DwellingModel.Resident" Width="1.5" PointX="3" PointY="15" />
+        <AssociationConnector Association="DwellingModel.FK_Resident_DocumentType" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingResidentRel_DwellingRel" />
+        <AssociationConnector Association="DwellingModel.FK_DwellingResidentRel_Resident" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

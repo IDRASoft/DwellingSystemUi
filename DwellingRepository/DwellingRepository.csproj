@@ -84,6 +84,9 @@
     <Compile Include="Database\CatState.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\DocumentType.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\DwellingApartment.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
@@ -115,10 +118,16 @@
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\DwellingRelMetadata.cs" />
+    <Compile Include="Database\DwellingResidentRel.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Resident.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ResidentMetadata.cs" />
     <Compile Include="Database\Street.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\StreetMetadata.cs" />
     <Compile Include="Database\VwDwellingData.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
@@ -126,7 +135,7 @@
     <Compile Include="Models\Shared\ComboBoxModel.cs" />
     <Compile Include="Models\Shared\EntityConstants.cs" />
     <Compile Include="Models\Shared\ResponseMessageModel.cs" />
-    <Compile Include="Models\ZipCodeLocationModel.cs" />
+    <Compile Include="Models\Shared\ZipCodeLocationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ResManagment.Designer.cs">
       <AutoGen>True</AutoGen>

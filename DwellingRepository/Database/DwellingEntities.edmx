@@ -98,6 +98,15 @@
           <Property Name="Abbreviation" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeId" />
+          </Key>
+          <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="DwellingApartment">
           <Key>
             <PropertyRef Name="DwellingApartmentId" />
@@ -139,6 +148,35 @@
           <Property Name="LocationId" Type="int" Nullable="false" />
           <Property Name="IsObsolete" Type="bit" Nullable="false" />
           <Property Name="IsApartment" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DwellingResidentRel">
+          <Key>
+            <PropertyRef Name="DwellingResidentRelId" />
+          </Key>
+          <Property Name="DwellingResidentRelId" Type="int" Nullable="false" />
+          <Property Name="DwellingId" Type="int" Nullable="false" />
+          <Property Name="ResidentId" Type="int" Nullable="false" />
+          <Property Name="IsPrincipal" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resident">
+          <Key>
+            <PropertyRef Name="ResidentId" />
+          </Key>
+          <Property Name="ResidentId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="500" />
+          <Property Name="Email2" Type="varchar" MaxLength="500" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="20" />
+          <Property Name="MobileNumber2" Type="varchar" MaxLength="20" />
+          <Property Name="OfficeNumber" Type="varchar" MaxLength="20" />
+          <Property Name="DocumentTypeId" Type="int" />
+          <Property Name="DocumentNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar" MaxLength="500" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="BirthDay" Type="datetime" />
+          <Property Name="Comments" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Street">
           <Key>
@@ -298,6 +336,30 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DwellingResidentRel_DwellingRel">
+          <End Role="DwellingRel" Type="Self.DwellingRel" Multiplicity="1" />
+          <End Role="DwellingResidentRel" Type="Self.DwellingResidentRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingResidentRel">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingResidentRel_Resident">
+          <End Role="Resident" Type="Self.Resident" Multiplicity="1" />
+          <End Role="DwellingResidentRel" Type="Self.DwellingResidentRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resident">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="DwellingResidentRel">
+              <PropertyRef Name="ResidentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Location_Municipality">
           <End Role="CatMunicipality" Type="Self.CatMunicipality" Multiplicity="1" />
           <End Role="CatLocation" Type="Self.CatLocation" Multiplicity="*" />
@@ -319,6 +381,18 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             </Principal>
             <Dependent Role="CatMunicipality">
               <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resident_DocumentType">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="0..1" />
+          <End Role="Resident" Type="Self.Resident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeId" />
+            </Principal>
+            <Dependent Role="Resident">
+              <PropertyRef Name="DocumentTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -345,10 +419,13 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <EntitySet Name="CatLocation" EntityType="Self.CatLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CatMunicipality" EntityType="Self.CatMunicipality" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CatState" EntityType="Self.CatState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DwellingApartment" EntityType="Self.DwellingApartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DwellingHouse" EntityType="Self.DwellingHouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DwellingLocation" EntityType="Self.DwellingLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DwellingRel" EntityType="Self.DwellingRel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DwellingResidentRel" EntityType="Self.DwellingResidentRel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resident" EntityType="Self.Resident" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Street" EntityType="Self.Street" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VwDwellingData" EntityType="Self.VwDwellingData" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -401,6 +478,14 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             <End Role="DwellingRel" EntitySet="DwellingRel" />
             <End Role="DwellingLocation" EntitySet="DwellingLocation" />
           </AssociationSet>
+          <AssociationSet Name="FK_DwellingResidentRel_DwellingRel" Association="Self.FK_DwellingResidentRel_DwellingRel">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingResidentRel" EntitySet="DwellingResidentRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingResidentRel_Resident" Association="Self.FK_DwellingResidentRel_Resident">
+            <End Role="Resident" EntitySet="Resident" />
+            <End Role="DwellingResidentRel" EntitySet="DwellingResidentRel" />
+          </AssociationSet>
           <AssociationSet Name="FK_Location_Municipality" Association="Self.FK_Location_Municipality">
             <End Role="CatMunicipality" EntitySet="CatMunicipality" />
             <End Role="CatLocation" EntitySet="CatLocation" />
@@ -408,6 +493,10 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <AssociationSet Name="FK_Municipality_State" Association="Self.FK_Municipality_State">
             <End Role="CatState" EntitySet="CatState" />
             <End Role="CatMunicipality" EntitySet="CatMunicipality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resident_DocumentType" Association="Self.FK_Resident_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="Resident" EntitySet="Resident" />
           </AssociationSet>
           <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
             <End Role="CatCountry" EntitySet="CatCountry" />
@@ -738,6 +827,21 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
             <End Role="DwellingLocation" EntitySet="DwellingLocation" />
           </AssociationSet>
           <EntitySet Name="VwDwellingData" EntityType="DwellingModel.VwDwellingData" />
+          <EntitySet Name="DocumentType" EntityType="DwellingModel.DocumentType" />
+          <EntitySet Name="DwellingResidentRel" EntityType="DwellingModel.DwellingResidentRel" />
+          <EntitySet Name="Resident" EntityType="DwellingModel.Resident" />
+          <AssociationSet Name="FK_Resident_DocumentType" Association="DwellingModel.FK_Resident_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="Resident" EntitySet="Resident" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingResidentRel_DwellingRel" Association="DwellingModel.FK_DwellingResidentRel_DwellingRel">
+            <End Role="DwellingRel" EntitySet="DwellingRel" />
+            <End Role="DwellingResidentRel" EntitySet="DwellingResidentRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DwellingResidentRel_Resident" Association="DwellingModel.FK_DwellingResidentRel_Resident">
+            <End Role="Resident" EntitySet="Resident" />
+            <End Role="DwellingResidentRel" EntitySet="DwellingResidentRel" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DwellingRel">
           <Key>
@@ -751,6 +855,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <NavigationProperty Name="DwellingApartment" Relationship="DwellingModel.FK_DwellingApartment_Dwelling" FromRole="DwellingRel" ToRole="DwellingApartment" />
           <NavigationProperty Name="DwellingHouse" Relationship="DwellingModel.FK_DwellingHouse_Dwelling" FromRole="DwellingRel" ToRole="DwellingHouse" />
           <NavigationProperty Name="DwellingLocation" Relationship="DwellingModel.FK_DwellingLocation_Dwelling" FromRole="DwellingRel" ToRole="DwellingLocation" />
+          <NavigationProperty Name="DwellingResidentRel" Relationship="DwellingModel.FK_DwellingResidentRel_DwellingRel" FromRole="DwellingRel" ToRole="DwellingResidentRel" />
         </EntityType>
         <Association Name="FK_Dwelling_CatLocation">
           <End Type="DwellingModel.CatLocation" Role="CatLocation" Multiplicity="1" />
@@ -808,6 +913,85 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="Address" Type="String" MaxLength="170" FixedLength="false" Unicode="false" />
           <Property Name="DwellingType" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeId" />
+          </Key>
+          <Property Name="DocumentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Resident" Relationship="DwellingModel.FK_Resident_DocumentType" FromRole="DocumentType" ToRole="Resident" />
+        </EntityType>
+        <EntityType Name="DwellingResidentRel">
+          <Key>
+            <PropertyRef Name="DwellingResidentRelId" />
+          </Key>
+          <Property Name="DwellingResidentRelId" Type="Int32" Nullable="false" />
+          <Property Name="DwellingId" Type="Int32" Nullable="false" />
+          <Property Name="ResidentId" Type="Int32" Nullable="false" />
+          <Property Name="IsPrincipal" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DwellingRel" Relationship="DwellingModel.FK_DwellingResidentRel_DwellingRel" FromRole="DwellingResidentRel" ToRole="DwellingRel" />
+          <NavigationProperty Name="Resident" Relationship="DwellingModel.FK_DwellingResidentRel_Resident" FromRole="DwellingResidentRel" ToRole="Resident" />
+        </EntityType>
+        <EntityType Name="Resident">
+          <Key>
+            <PropertyRef Name="ResidentId" />
+          </Key>
+          <Property Name="ResidentId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OfficeNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentTypeId" Type="Int32" />
+          <Property Name="DocumentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="BirthDay" Type="DateTime" Precision="3" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentType" Relationship="DwellingModel.FK_Resident_DocumentType" FromRole="Resident" ToRole="DocumentType" />
+          <NavigationProperty Name="DwellingResidentRel" Relationship="DwellingModel.FK_DwellingResidentRel_Resident" FromRole="Resident" ToRole="DwellingResidentRel" />
+        </EntityType>
+        <Association Name="FK_Resident_DocumentType">
+          <End Type="DwellingModel.DocumentType" Role="DocumentType" Multiplicity="0..1" />
+          <End Type="DwellingModel.Resident" Role="Resident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeId" />
+            </Principal>
+            <Dependent Role="Resident">
+              <PropertyRef Name="DocumentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingResidentRel_DwellingRel">
+          <End Type="DwellingModel.DwellingRel" Role="DwellingRel" Multiplicity="1" />
+          <End Type="DwellingModel.DwellingResidentRel" Role="DwellingResidentRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DwellingRel">
+              <PropertyRef Name="DwellingId" />
+            </Principal>
+            <Dependent Role="DwellingResidentRel">
+              <PropertyRef Name="DwellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DwellingResidentRel_Resident">
+          <End Type="DwellingModel.Resident" Role="Resident" Multiplicity="1" />
+          <End Type="DwellingModel.DwellingResidentRel" Role="DwellingResidentRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resident">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="DwellingResidentRel">
+              <PropertyRef Name="ResidentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -975,6 +1159,47 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
                 <ScalarProperty Name="DwellingType" ColumnName="DwellingType" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentType">
+            <EntityTypeMapping TypeName="DwellingModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DwellingResidentRel">
+            <EntityTypeMapping TypeName="DwellingModel.DwellingResidentRel">
+              <MappingFragment StoreEntitySet="DwellingResidentRel">
+                <ScalarProperty Name="IsPrincipal" ColumnName="IsPrincipal" />
+                <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+                <ScalarProperty Name="DwellingResidentRelId" ColumnName="DwellingResidentRelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resident">
+            <EntityTypeMapping TypeName="DwellingModel.Resident">
+              <MappingFragment StoreEntitySet="Resident">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
+                <ScalarProperty Name="MobileNumber2" ColumnName="MobileNumber2" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
