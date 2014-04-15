@@ -8,7 +8,7 @@ using DwellingSystemUi.Resources;
 
 namespace DwellingSystemUi.Areas.Managment.Controllers
 {
-    public class ResidentController : BaseController
+    public class ResidentControlleeer : BaseController
     {
         public ActionResult Upsert(int? id)
         {
