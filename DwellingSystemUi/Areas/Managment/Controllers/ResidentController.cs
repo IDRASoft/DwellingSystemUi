@@ -14,6 +14,8 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
         {
             ViewBag.DocumentTypeList = new JavaScriptSerializer().Serialize(CatalogRepository.GetDocumentTypeCat(Db));
 
+            /*Comentario rOOOOOOOOOl*/
+
           /*  Resident model;
 
             if (id != null)
