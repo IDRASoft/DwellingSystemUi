@@ -25,6 +25,7 @@ namespace DwellingRepository.Database
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<VwResident> VwResident { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
@@ -40,14 +41,13 @@ namespace DwellingRepository.Database
         public virtual DbSet<DwellingLocation> DwellingLocation { get; set; }
         public virtual DbSet<DwellingRel> DwellingRel { get; set; }
         public virtual DbSet<DwellingResidentRel> DwellingResidentRel { get; set; }
-        public virtual DbSet<Resident> Resident { get; set; }
-        public virtual DbSet<Street> Street { get; set; }
-        public virtual DbSet<VwDwellingData> VwDwellingData { get; set; }
-        public virtual DbSet<VwResident> VwResident { get; set; }
         public virtual DbSet<Periodicity> Periodicity { get; set; }
+        public virtual DbSet<Resident> Resident { get; set; }
         public virtual DbSet<Service> Service { get; set; }
+        public virtual DbSet<Street> Street { get; set; }
         public virtual DbSet<Tax> Tax { get; set; }
         public virtual DbSet<TaxServiceRel> TaxServiceRel { get; set; }
+        public virtual DbSet<VwDwellingData> VwDwellingData { get; set; }
         public virtual DbSet<VwServiceData> VwServiceData { get; set; }
     }
 }
