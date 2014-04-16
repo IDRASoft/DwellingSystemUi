@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using DwellingRepository.Resources;
+using Infrastructure.Extensions;
 
 namespace DwellingRepository.Database
 {
     [MetadataType(typeof(ResidentMetadata))]
     public partial class Resident
     {
-        private DwellingResidentRel DwellingResidentRelToUSe { get; set; }
+        public DwellingResidentRel DwellingResidentRelToUSe { get; set; }
 
     }
     public class ResidentMetadata
@@ -45,5 +46,22 @@ namespace DwellingRepository.Database
 
         [Display(Name = "COMMENTS_LABEL", ResourceType = typeof(ResManagment))]
         public string Comments { get; set; }
+        
+        public int DwellingId { get; set; }
+    }
+
+    public class ResidentDataJson
+    {
+
+        public static Resident ModelEnt;
+
+        public static string Key = ModelEnt.PropertyName(e => e.ResidentId);
+
+        public static string Columns = string.Join(",", new[]
+                                                        {
+                                                            ModelEnt.PropertyName(e => e.ResidentId),
+                                                            ModelEnt.PropertyName(e => e.Name + e.LastName),
+                                                            ModelEnt.PropertyName(e => e.PhoneNumber)
+                                                        });
     }
 }

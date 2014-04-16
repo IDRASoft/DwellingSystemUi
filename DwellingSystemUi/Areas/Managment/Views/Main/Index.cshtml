@@ -18,58 +18,93 @@
 
     <script>
 
-        var lastsel;
-        var upsert = function(id) {
-            window.showUpsert(id, "#angJsjqGridId", "@Url.Action("Upsert", "Main", new {area = "Managment"})", "#GridDwelling");
-        };
-        
-        var obsolete = function (id) {
-            window.showObsolete(id, "#angJsjqGridId", "@Url.Action("DoObsolete", "Main", new {area = "Managment"})", "#GridDwelling");
-        };
-        
-        var upsertResident = function (id) {
-            window.showUpsert(id, "#angJsjqGridId", "@Url.Action("Upsert", "Resident", new {area = "Managment"})", "#GridDwelling");
-        };
-        
+    var lastsel;
+    var upsert = function(id) {
+        window.showUpsert(id, "#angJsjqGridId", "@Url.Action("Upsert", "Main", new {area = "Managment"})", "#GridDwelling");
+    };
 
-        $(document).ready(function() {
+    var obsolete = function(id) {
+        window.showObsolete(id, "#angJsjqGridId", "@Url.Action("DoObsolete", "Main", new {area = "Managment"})", "#GridDwelling");
+    };
 
-            jQuery("#GridDwelling").jqGrid({
-                url: '@Url.Action("List", "Main", new {area = "Managment"})',
-                datatype: "json",
-                mtype: 'POST',
-                colNames: ['ID', 'Dirección', 'Tipo', 'Acciones'],
-                colModel: [
-                    { name: 'DwellingId', index: 'DwellingId', hidden: true },
-                    { name: 'Address', editable: true, index: 'Address', align: "center", width: 280, sorttype: 'string', searchoptions: { sopt: ['bw'] } },
-                    { name: 'DwellingType', index: 'DwellingType', align: "center", width: 400, sorttype: 'string', search: false },
-                    { name: 'Action', width: 100, align: "center", sortable: false, search: false }
-                ],
-                rowNum: 15,
-                rowList: [15, 30, 60],
-                pager: '#GridDwellingPager',
-                sortname: 'Address',
-                width: 800,
-                height: 380,
-                viewrecords: true,
-                shrinkToFit: false,
-                sortorder: "desc",
-                caption: "@ResShared.TITLE_MENU_DWELLING",
-                gridComplete: function() {
-                    var ids = $(this).jqGrid('getDataIDs');
-                    for (var i = 0; i < ids.length; i++) {
-                        var cl = ids[i];
-                        be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Editar vivienda\" onclick=\"upsert('" + cl + "');\"><span class=\"ui-icon ui-icon-pencil\"></span></a>";
-                        bo = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar vivienda\" onclick=\"obsolete('" + cl + "');\"><span class=\"ui-icon ui-icon-trash\"></span></a>";
-                        br = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Agregar residente\" onclick=\"upsertResident();\"><span class=\"ui-icon ui-icon-person\"></span></a>";
-                        $(this).jqGrid('setRowData', ids[i], { Action: be + bo+ br });
-                    }
-                },
-                ondblClickRow: function(rowid) {
-                    //upsert.call(this, rowid);
+    var upsertResident = function(idDwelling, idResident) {
+        window.showUpsertResident(idDwelling, idResident, "#angJsjqGridId", "@Url.Action("Upsert", "Resident", new {area = "Managment"})", "#GridDwelling");
+    };
+
+    var subgridData = [{ nameColor: 'black', shade: 'dark' },
+       { nameColor: 'white', shade: 'light' },
+       { nameColor: 'red', shade: 'dark' },
+       { nameColor: 'blue', shade: 'dark' },
+       { nameColor: 'yellow', shade: 'light' }];
+
+    $(document).ready(function() {
+
+        jQuery("#GridDwelling").jqGrid({
+            url: '@Url.Action("List", "Main", new {area = "Managment"})',
+            datatype: "json",
+            mtype: 'POST',
+            colNames: ['ID', 'Dirección', 'Tipo', 'Acciones'],
+            colModel: [
+                { name: 'DwellingId', index: 'DwellingId', hidden: true },
+                { name: 'Address', index: 'Address', align: "center", width: 280, sorttype: 'string', searchoptions: { sopt: ['bw'] } },
+                { name: 'DwellingType', index: 'DwellingType', align: "center", width: 400, sorttype: 'string', search: false },
+                { name: 'Action', width: 100, align: "center", sortable: false, search: false }
+            ],
+            rowNum: 15,
+            rowList: [15, 30, 60],
+            pager: '#GridDwellingPager',
+            sortname: 'Address',
+            width: 800,
+            height: 380,
+            viewrecords: true,
+            shrinkToFit: false,
+            sortorder: "desc",
+            caption: "@ResShared.TITLE_MENU_DWELLING",
+            gridComplete: function() {
+                var ids = $(this).jqGrid('getDataIDs');
+                for (var i = 0; i < ids.length; i++) {
+                    var cl = ids[i];
+                    be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Editar vivienda\" onclick=\"upsert('" + cl + "');\"><span class=\"ui-icon ui-icon-pencil\"></span></a>";
+                    bo = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar vivienda\" onclick=\"obsolete('" + cl + "');\"><span class=\"ui-icon ui-icon-trash\"></span></a>";
+                    br = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Agregar residente\" onclick=\"upsertResident('" + cl + ",0');\"><span class=\"ui-icon ui-icon-person\"></span></a>";
+                    $(this).jqGrid('setRowData', ids[i], { Action: be + bo + br });
                 }
-            });
-
+            },
+            ondblClickRow: function(rowid) {
+                //upsert.call(this, rowid);
+            },
+            subGrid: true,
+            subGridRowExpanded: function(subgrid_id, row_id) {
+                var subgrid_table_id;
+                subgrid_table_id = subgrid_id + "_t";
+                jQuery("#" + subgrid_id).html("<table id='" + subgrid_table_id + "' class='scroll'></table>");
+                jQuery("#" + subgrid_table_id).jqGrid({
+                    url: '@Url.Action("List", "Main", new {area = "Managment"})',
+                    datatype: "json",
+                    mtype: 'POST',
+                    colNames: ['ID', 'Dirección', 'Tipo', 'Acciones'],
+                    colModel: [
+                        { name: 'DwellingId', index: 'DwellingId', hidden: true },
+                        { name: 'Address',  index: 'Address', align: "center", width: 280, sorttype: 'string', searchoptions: { sopt: ['bw'] } },
+                        { name: 'DwellingType', index: 'DwellingType', align: "center", width: 400, sorttype: 'string', search: false },
+                        { name: 'Action', width: 100, align: "center", sortable: false, search: false }
+                    ],
+                    sortname: 'Address',
+                    viewrecords: true,
+                    caption: "@ResShared.TITLE_MENU_DWELLING",
+                    gridComplete: function () {
+                        var ids = $(this).jqGrid('getDataIDs');
+                        for (var i = 0; i < ids.length; i++) {
+                            var cl = ids[i];
+                            be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Editar vivienda\" onclick=\"upsert('" + cl + "');\"><span class=\"ui-icon ui-icon-pencil\"></span></a>";
+                            bo = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar vivienda\" onclick=\"obsolete('" + cl + "');\"><span class=\"ui-icon ui-icon-trash\"></span></a>";
+                            br = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Agregar residente\" onclick=\"upsertResident('" + cl + ",0');\"><span class=\"ui-icon ui-icon-person\"></span></a>";
+                            $(this).jqGrid('setRowData', ids[i], { Action: be + bo + br });
+                        }
+                    }
+                });
+            },
+        });
 
             jQuery("#GridDwelling").jqGrid('navGrid', '#GridDwellingPager', { edit: false, add: true, del: false, search: true, addfunc: upsert });
 

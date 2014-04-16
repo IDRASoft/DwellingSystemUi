@@ -34,14 +34,14 @@ namespace DwellingRepository.Database
         public virtual DbSet<CatLocation> CatLocation { get; set; }
         public virtual DbSet<CatMunicipality> CatMunicipality { get; set; }
         public virtual DbSet<CatState> CatState { get; set; }
+        public virtual DbSet<DocumentType> DocumentType { get; set; }
         public virtual DbSet<DwellingApartment> DwellingApartment { get; set; }
         public virtual DbSet<DwellingHouse> DwellingHouse { get; set; }
         public virtual DbSet<DwellingLocation> DwellingLocation { get; set; }
-        public virtual DbSet<Street> Street { get; set; }
         public virtual DbSet<DwellingRel> DwellingRel { get; set; }
-        public virtual DbSet<VwDwellingData> VwDwellingData { get; set; }
-        public virtual DbSet<DocumentType> DocumentType { get; set; }
         public virtual DbSet<DwellingResidentRel> DwellingResidentRel { get; set; }
         public virtual DbSet<Resident> Resident { get; set; }
+        public virtual DbSet<Street> Street { get; set; }
+        public virtual DbSet<VwDwellingData> VwDwellingData { get; set; }
     }
 }
