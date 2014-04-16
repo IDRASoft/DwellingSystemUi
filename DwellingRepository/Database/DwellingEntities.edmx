@@ -4,17 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DwellingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="DwellingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -168,6 +158,15 @@
           <Property Name="ResidentId" Type="int" Nullable="false" />
           <Property Name="IsPrincipal" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Periodicity">
+          <Key>
+            <PropertyRef Name="PeriodicityId" />
+          </Key>
+          <Property Name="PeriodicityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
         <EntityType Name="Resident">
           <Key>
             <PropertyRef Name="ResidentId" />
@@ -187,15 +186,7 @@
           <Property Name="Gender" Type="bit" Nullable="false" />
           <Property Name="BirthDay" Type="datetime" />
           <Property Name="Comments" Type="varchar(max)" />
-        </EntityType>
-        <EntityType Name="Periodicity">
-          <Key>
-            <PropertyRef Name="PeriodicityId" />
-          </Key>
-          <Property Name="PeriodicityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Value" Type="int" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="IsObsolete" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -528,7 +519,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DwellingModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -545,8 +535,8 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
           <EntitySet Name="DwellingLocation" EntityType="Self.DwellingLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DwellingRel" EntityType="Self.DwellingRel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DwellingResidentRel" EntityType="Self.DwellingResidentRel" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Resident" EntityType="Self.Resident" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Periodicity" EntityType="Self.Periodicity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resident" EntityType="Self.Resident" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Street" EntityType="Self.Street" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -657,104 +647,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
     <edmx:ConceptualModels>
       <Schema Namespace="DwellingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DwellingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="DwellingModel.C__MigrationHistory" />
-          <EntitySet Name="AspNetRoles" EntityType="DwellingModel.AspNetRoles" />
-          <EntitySet Name="AspNetUserClaims" EntityType="DwellingModel.AspNetUserClaims" />
-          <EntitySet Name="AspNetUserLogins" EntityType="DwellingModel.AspNetUserLogins" />
-          <EntitySet Name="AspNetUsers" EntityType="DwellingModel.AspNetUsers" />
-          <EntitySet Name="Building" EntityType="DwellingModel.Building" />
-          <EntitySet Name="CatCountry" EntityType="DwellingModel.CatCountry" />
-          <EntitySet Name="CatLocation" EntityType="DwellingModel.CatLocation" />
-          <EntitySet Name="CatMunicipality" EntityType="DwellingModel.CatMunicipality" />
-          <EntitySet Name="CatState" EntityType="DwellingModel.CatState" />
-          <EntitySet Name="DwellingApartment" EntityType="DwellingModel.DwellingApartment" />
-          <EntitySet Name="DwellingHouse" EntityType="DwellingModel.DwellingHouse" />
-          <EntitySet Name="DwellingLocation" EntityType="DwellingModel.DwellingLocation" />
-          <EntitySet Name="DwellingRel" EntityType="DwellingModel.DwellingRel" />
-          <EntitySet Name="Periodicity" EntityType="DwellingModel.Periodicity" />
-          <EntitySet Name="Service" EntityType="DwellingModel.Service" />
-          <EntitySet Name="Street" EntityType="DwellingModel.Street" />
-          <EntitySet Name="sysdiagrams" EntityType="DwellingModel.sysdiagrams" />
-          <EntitySet Name="Tax" EntityType="DwellingModel.Tax" />
-          <EntitySet Name="TaxServiceRel" EntityType="DwellingModel.TaxServiceRel" />
-          <EntitySet Name="VwDwellingData" EntityType="DwellingModel.VwDwellingData" />
-          <EntitySet Name="VwServiceData" EntityType="DwellingModel.VwServiceData" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="DwellingModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="DwellingModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Building_Street" Association="DwellingModel.FK_Building_Street">
-            <End Role="Street" EntitySet="Street" />
-            <End Role="Building" EntitySet="Building" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DwellingApartment_Building" Association="DwellingModel.FK_DwellingApartment_Building">
-            <End Role="Building" EntitySet="Building" />
-            <End Role="DwellingApartment" EntitySet="DwellingApartment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_State_Country" Association="DwellingModel.FK_State_Country">
-            <End Role="CatCountry" EntitySet="CatCountry" />
-            <End Role="CatState" EntitySet="CatState" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Dwelling_CatLocation" Association="DwellingModel.FK_Dwelling_CatLocation">
-            <End Role="CatLocation" EntitySet="CatLocation" />
-            <End Role="DwellingRel" EntitySet="DwellingRel" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Location_Municipality" Association="DwellingModel.FK_Location_Municipality">
-            <End Role="CatMunicipality" EntitySet="CatMunicipality" />
-            <End Role="CatLocation" EntitySet="CatLocation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Municipality_State" Association="DwellingModel.FK_Municipality_State">
-            <End Role="CatState" EntitySet="CatState" />
-            <End Role="CatMunicipality" EntitySet="CatMunicipality" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DwellingApartment_Dwelling" Association="DwellingModel.FK_DwellingApartment_Dwelling">
-            <End Role="DwellingRel" EntitySet="DwellingRel" />
-            <End Role="DwellingApartment" EntitySet="DwellingApartment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DwellingHouse_Dwelling" Association="DwellingModel.FK_DwellingHouse_Dwelling">
-            <End Role="DwellingRel" EntitySet="DwellingRel" />
-            <End Role="DwellingHouse" EntitySet="DwellingHouse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DwellingHouse_Street" Association="DwellingModel.FK_DwellingHouse_Street">
-            <End Role="Street" EntitySet="Street" />
-            <End Role="DwellingHouse" EntitySet="DwellingHouse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DwellingLocation_Dwelling" Association="DwellingModel.FK_DwellingLocation_Dwelling">
-            <End Role="DwellingRel" EntitySet="DwellingRel" />
-            <End Role="DwellingLocation" EntitySet="DwellingLocation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Service_Periodicity" Association="DwellingModel.FK_Service_Periodicity">
-            <End Role="Periodicity" EntitySet="Periodicity" />
-            <End Role="Service" EntitySet="Service" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaxServiceRel_Service" Association="DwellingModel.FK_TaxServiceRel_Service">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="TaxServiceRel" EntitySet="TaxServiceRel" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaxServiceRel_Tax" Association="DwellingModel.FK_TaxServiceRel_Tax">
-            <End Role="Tax" EntitySet="Tax" />
-            <End Role="TaxServiceRel" EntitySet="TaxServiceRel" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="DwellingModel.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityContainer Name="DwellingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AspNetRoles" EntityType="DwellingModel.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="DwellingModel.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="DwellingModel.AspNetUserLogins" />
@@ -770,9 +662,15 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
           <EntitySet Name="DwellingLocation" EntityType="DwellingModel.DwellingLocation" />
           <EntitySet Name="DwellingRel" EntityType="DwellingModel.DwellingRel" />
           <EntitySet Name="DwellingResidentRel" EntityType="DwellingModel.DwellingResidentRel" />
+          <EntitySet Name="Periodicity" EntityType="DwellingModel.Periodicity" />
           <EntitySet Name="Resident" EntityType="DwellingModel.Resident" />
+          <EntitySet Name="Service" EntityType="DwellingModel.Service" />
           <EntitySet Name="Street" EntityType="DwellingModel.Street" />
+          <EntitySet Name="sysdiagrams" EntityType="DwellingModel.sysdiagrams" />
+          <EntitySet Name="Tax" EntityType="DwellingModel.Tax" />
+          <EntitySet Name="TaxServiceRel" EntityType="DwellingModel.TaxServiceRel" />
           <EntitySet Name="VwDwellingData" EntityType="DwellingModel.VwDwellingData" />
+          <EntitySet Name="VwServiceData" EntityType="DwellingModel.VwServiceData" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="DwellingModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -832,6 +730,18 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
           <AssociationSet Name="FK_DwellingResidentRel_Resident" Association="DwellingModel.FK_DwellingResidentRel_Resident">
             <End Role="Resident" EntitySet="Resident" />
             <End Role="DwellingResidentRel" EntitySet="DwellingResidentRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_Periodicity" Association="DwellingModel.FK_Service_Periodicity">
+            <End Role="Periodicity" EntitySet="Periodicity" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxServiceRel_Service" Association="DwellingModel.FK_TaxServiceRel_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="TaxServiceRel" EntitySet="TaxServiceRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxServiceRel_Tax" Association="DwellingModel.FK_TaxServiceRel_Tax">
+            <End Role="Tax" EntitySet="Tax" />
+            <End Role="TaxServiceRel" EntitySet="TaxServiceRel" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="DwellingModel.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -1011,6 +921,16 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
           <NavigationProperty Name="DwellingRel" Relationship="DwellingModel.FK_DwellingResidentRel_DwellingRel" FromRole="DwellingResidentRel" ToRole="DwellingRel" />
           <NavigationProperty Name="Resident" Relationship="DwellingModel.FK_DwellingResidentRel_Resident" FromRole="DwellingResidentRel" ToRole="Resident" />
         </EntityType>
+        <EntityType Name="Periodicity">
+          <Key>
+            <PropertyRef Name="PeriodicityId" />
+          </Key>
+          <Property Name="PeriodicityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Service" Relationship="DwellingModel.FK_Service_Periodicity" FromRole="Periodicity" ToRole="Service" />
+        </EntityType>
         <EntityType Name="Resident">
           <Key>
             <PropertyRef Name="ResidentId" />
@@ -1030,22 +950,9 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
           <Property Name="Gender" Type="Boolean" Nullable="false" />
           <Property Name="BirthDay" Type="DateTime" Precision="3" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DocumentType" Relationship="DwellingModel.FK_Resident_DocumentType" FromRole="Resident" ToRole="DocumentType" />
           <NavigationProperty Name="DwellingResidentRel" Relationship="DwellingModel.FK_DwellingResidentRel_Resident" FromRole="Resident" ToRole="DwellingResidentRel" />
-          <NavigationProperty Name="CatLocation" Relationship="DwellingModel.FK_Dwelling_CatLocation" FromRole="DwellingRel" ToRole="CatLocation" />
-          <NavigationProperty Name="DwellingApartment" Relationship="DwellingModel.FK_DwellingApartment_Dwelling" FromRole="DwellingRel" ToRole="DwellingApartment" />
-          <NavigationProperty Name="DwellingHouse" Relationship="DwellingModel.FK_DwellingHouse_Dwelling" FromRole="DwellingRel" ToRole="DwellingHouse" />
-          <NavigationProperty Name="DwellingLocation" Relationship="DwellingModel.FK_DwellingLocation_Dwelling" FromRole="DwellingRel" ToRole="DwellingLocation" />
-        </EntityType>
-        <EntityType Name="Periodicity">
-          <Key>
-            <PropertyRef Name="PeriodicityId" />
-          </Key>
-          <Property Name="PeriodicityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Value" Type="Int32" Nullable="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Service" Relationship="DwellingModel.FK_Service_Periodicity" FromRole="Periodicity" ToRole="Service" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -1304,6 +1211,18 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DwellingResidentRel_Resident">
+          <End Type="DwellingModel.Resident" Role="Resident" Multiplicity="1" />
+          <End Type="DwellingModel.DwellingResidentRel" Role="DwellingResidentRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resident">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="DwellingResidentRel">
+              <PropertyRef Name="ResidentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Service_Periodicity">
           <End Type="DwellingModel.Periodicity" Role="Periodicity" Multiplicity="1" />
           <End Type="DwellingModel.Service" Role="Service" Multiplicity="*" />
@@ -1350,16 +1269,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DwellingModelStoreContainer" CdmEntityContainer="DwellingEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="DwellingModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="DwellingModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -1513,9 +1422,8 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
               <MappingFragment StoreEntitySet="DwellingResidentRel">
                 <ScalarProperty Name="IsPrincipal" ColumnName="IsPrincipal" />
                 <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
-                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+                <ScalarProperty Name="DwellingResidentRelId" ColumnName="DwellingResidentRelId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1526,6 +1434,28 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PeriodicityId" ColumnName="PeriodicityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resident">
+            <EntityTypeMapping TypeName="DwellingModel.Resident">
+              <MappingFragment StoreEntitySet="Resident">
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
+                <ScalarProperty Name="MobileNumber2" ColumnName="MobileNumber2" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1543,28 +1473,6 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene d
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
-                <ScalarProperty Name="DwellingResidentRelId" ColumnName="DwellingResidentRelId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Resident">
-            <EntityTypeMapping TypeName="DwellingModel.Resident">
-              <MappingFragment StoreEntitySet="Resident">
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
-                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
-                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
-                <ScalarProperty Name="MobileNumber2" ColumnName="MobileNumber2" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Email2" ColumnName="Email2" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

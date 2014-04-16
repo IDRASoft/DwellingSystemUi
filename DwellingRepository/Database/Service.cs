@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DwellingRepository.Models.Shared;
-
 namespace DwellingRepository.Database
 {
     using System;
@@ -18,7 +16,6 @@ namespace DwellingRepository.Database
     {
         public Service()
         {
-            ListTax = new List<ComboBoxModel>();
             this.TaxServiceRel = new HashSet<TaxServiceRel>();
         }
     

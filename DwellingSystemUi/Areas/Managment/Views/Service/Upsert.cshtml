@@ -147,14 +147,17 @@
                                         @foreach (var item in ViewBag.listTax)
                                         {
                                             contains = false;
-                                            foreach (var relServ in Model.ListTax)
-                                             {
-                                                 if (relServ.KeyId == item.KeyId)
-                                                 {
-                                                     contains = true;
-                                                 }
-                                             }
-                                                if (contains)
+                                            if (Model.ListTax != null)
+                                            {
+                                                foreach (var relServ in Model.ListTax)
+                                                {
+                                                    if (relServ.KeyId == item.KeyId)
+                                                    {
+                                                        contains = true;
+                                                    }
+                                                }
+                                            }
+                                            if (contains)
                                                 {
                                                     <div class="col-xs-10 col-xs-offset-2">
                                                         <div class="checkbox">

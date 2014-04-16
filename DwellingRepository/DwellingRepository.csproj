@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Catalogs\CatalogRepository.cs" />
     <Compile Include="Catalogs\DwellingDataRepository.cs" />
+    <Compile Include="Catalogs\ServiceRepository.cs" />
     <Compile Include="Common\BaseRepository.cs" />
     <Compile Include="Common\GenericRepository.cs" />
     <Compile Include="Database\AspNetRoles.cs">
@@ -97,6 +98,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DwellingEntities.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\DwellingEntities.Context1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DwellingEntities.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\DwellingEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -121,17 +127,36 @@
     <Compile Include="Database\DwellingResidentRel.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Periodicity.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Resident.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\ResidentMetadata.cs" />
+    <Compile Include="Database\Service.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Services\ServiceMetadata.cs" />
     <Compile Include="Database\Street.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagrams.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Tax.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TaxServiceRel.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\VwDwellingData.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\BuildingMetadata.cs" />
+    <Compile Include="Database\VwServiceData.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Shared\ComboBoxModel.cs" />
     <Compile Include="Models\Shared\EntityConstants.cs" />
     <Compile Include="Models\Shared\ResponseMessageModel.cs" />
@@ -142,6 +167,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResManagment.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ResService.Designer.cs" />
     <Compile Include="Resources\ResShared.Designer.cs">
       <DependentUpon>ResShared.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -157,7 +183,7 @@
     <None Include="Database\DwellingEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DwellingEntities.edmx</DependentUpon>
-      <LastGenOutput>DwellingEntities.Context.cs</LastGenOutput>
+      <LastGenOutput>DwellingEntities.Context1.cs</LastGenOutput>
     </None>
     <None Include="Database\DwellingEntities.edmx.diagram">
       <DependentUpon>DwellingEntities.edmx</DependentUpon>
@@ -184,6 +210,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResManagment.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ResService.resx" />
     <EmbeddedResource Include="Resources\ResShared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResShared.Designer.cs</LastGenOutput>
