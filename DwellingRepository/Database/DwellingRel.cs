@@ -19,15 +19,18 @@ namespace DwellingRepository.Database
             this.DwellingApartment = new HashSet<DwellingApartment>();
             this.DwellingHouse = new HashSet<DwellingHouse>();
             this.DwellingLocation = new HashSet<DwellingLocation>();
+            this.DwellingResidentRel = new HashSet<DwellingResidentRel>();
         }
     
         public int DwellingId { get; set; }
         public int LocationId { get; set; }
         public bool IsObsolete { get; set; }
+        public bool IsApartment { get; set; }
     
         public virtual CatLocation CatLocation { get; set; }
         public virtual ICollection<DwellingApartment> DwellingApartment { get; set; }
         public virtual ICollection<DwellingHouse> DwellingHouse { get; set; }
         public virtual ICollection<DwellingLocation> DwellingLocation { get; set; }
+        public virtual ICollection<DwellingResidentRel> DwellingResidentRel { get; set; }
     }
 }

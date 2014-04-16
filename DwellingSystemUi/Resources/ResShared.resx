@@ -126,6 +126,9 @@
   <data name="ERROR_INVALID_MODEL" xml:space="preserve">
     <value>Existe uno o más campos inválidos. Por favor revise sus datos e intente de nuevo.</value>
   </data>
+  <data name="ERROR_MODEL_NOTFOUND" xml:space="preserve">
+    <value>No se ha encontrado el registro</value>
+  </data>
   <data name="ERROR_UNKOWN" xml:space="preserve">
     <value>Error desconocido</value>
   </data>
@@ -137,6 +140,12 @@
   </data>
   <data name="TITLE_MENU_MANAGMENT" xml:space="preserve">
     <value>Administración</value>
+  </data>
+  <data name="TITLE_OBSOLETE_FAILED" xml:space="preserve">
+    <value>Eliminado fallido</value>
+  </data>
+  <data name="TITLE_OBSOLETE_SUCCESS" xml:space="preserve">
+    <value>Eliminado exitoso</value>
   </data>
   <data name="TITLE_MENU_SERVICE" xml:space="preserve">
     <value>Servicios</value>

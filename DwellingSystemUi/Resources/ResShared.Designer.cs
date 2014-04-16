@@ -88,6 +88,15 @@ namespace DwellingSystemUi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No se ha encontrado el registro.
+        /// </summary>
+        public static string ERROR_MODEL_NOTFOUND {
+            get {
+                return ResourceManager.GetString("ERROR_MODEL_NOTFOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error desconocido.
         /// </summary>
         public static string ERROR_UNKOWN {
@@ -129,6 +138,24 @@ namespace DwellingSystemUi.Resources {
         public static string TITLE_MENU_SERVICE {
             get {
                 return ResourceManager.GetString("TITLE_MENU_SERVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminado fallido.
+        /// </summary>
+        public static string TITLE_OBSOLETE_FAILED {
+            get {
+                return ResourceManager.GetString("TITLE_OBSOLETE_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminado exitoso.
+        /// </summary>
+        public static string TITLE_OBSOLETE_SUCCESS {
+            get {
+                return ResourceManager.GetString("TITLE_OBSOLETE_SUCCESS", resourceCulture);
             }
         }
         

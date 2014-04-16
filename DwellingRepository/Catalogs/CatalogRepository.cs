@@ -2,6 +2,7 @@
 using System.Linq;
 using DwellingRepository.Database;
 using DwellingRepository.Models;
+using DwellingRepository.Models.Shared;
 
 namespace DwellingRepository.Catalogs
 {
@@ -29,8 +30,24 @@ namespace DwellingRepository.Catalogs
                 .ToList();
 
         }
-    }
 
-       
+        public static List<ComboBoxModel> GetStreetCat(DwellingEntities db)
+        {
+            return db.Street.Select(e => new ComboBoxModel()
+                                         {
+                                             KeyId = e.StreetId,
+                                             Value = e.Name
+                                         }).ToList().OrderBy(e=>e.Value).ToList();
+        }
+
+        public static List<ComboBoxModel> GetDocumentTypeCat(DwellingEntities db)
+        {
+            return db.DocumentType.Select(e => new ComboBoxModel()
+            {
+                KeyId = e.DocumentTypeId,
+                Value = e.Name
+            }).ToList().OrderBy(e => e.Value).ToList();
+        }
+    }
 }
 

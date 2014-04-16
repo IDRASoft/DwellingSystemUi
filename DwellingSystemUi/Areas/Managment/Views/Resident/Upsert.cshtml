@@ -1,0 +1,233 @@
+﻿@model DwellingRepository.Database.Resident
+@using DwellingRepository.Resources
+@using ResShared = DwellingSystemUi.Resources.ResShared
+@{
+    Layout = null;
+}
+
+<script>
+
+    $(document).ready(function () {
+        window.showModalFormDlg("#dlgUpModalId", "#ResidentForm");
+    });
+
+</script>
+
+<div id="dlgUpModalId" class="modal fade" ng-controller="upsertController" ng-cloak>
+    <div class="modal-dialog" style="width:720px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="element-center">AGREGAR VIVIENDA</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="ResidentForm" name="ResidentForm" ng-submit="submit('#ResidentForm')" class="form-horizontal" role="form">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.ResidentId)
+
+                    <div class="panel panel-default panel-primary">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-folder-close"></span>&nbsp;&nbsp;@ResManagment.RESIDENT_DATA_LABEL
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="row">
+                                    <div class="col-xs-3 element-left">
+                                        *@Html.LabelFor(model => model.Name, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-xs-8">
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-xs-3 element-left">
+                                        *@Html.LabelFor(model => model.LastName, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-xs-8">
+                                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                        @Html.ValidationMessageFor(model => model.LastName)
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-xs-3 element-left">
+                                        @Html.LabelFor(model => model.BirthDay, new { @class = "control-label" }):
+                                    </div>
+                                    <div class="col-xs-8">
+                                        @Html.TextBoxFor(model => model.BirthDay, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                        @Html.ValidationMessageFor(model => model.BirthDay)
+                                    </div>
+                                </div>
+
+
+                                <div class="row ">
+                                    <label class="col-xs-2 control-label element-left">
+                                        *@ResManagment.GENDER_LABEL:
+                                    </label>
+
+                                    <div class="col-xs-8 col-xs-offset-1">
+                                        <label class="radio-inline">
+                                            @Html.RadioButtonFor(m => m.Gender, "false", new { ng_model = "m.Gender" })@ResManagment.GENDER_FEMALE_LABEL
+                                        </label>
+
+                                        <label class="radio-inline">
+
+                                            @Html.RadioButtonFor(m => m.Gender, "true", new
+                                                                                    {
+                                                                                        ng_model = "m.Gender",
+                                                                                        ng_init = "m.Gender = '" + (Model.Gender ? "true" : "false") + "'"
+                                                                                    })@ResManagment.GENDER_MALE_LABEL
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="row ">
+                                                                            <br />
+                                                                            <div class="col-xs-3 element-left">
+                                                                                @Html.LabelFor(model => model.Email, new { @class = "control-label" }):
+                                                                            </div>
+                                                                            <div class="col-xs-8">
+                                                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                                                            </div>
+                                                                            <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                                                                @Html.ValidationMessageFor(model => model.Email)
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row ">
+                                                                            <div class="col-xs-3 element-left">
+                                                                                @Html.LabelFor(model => model.Email2, new { @class = "control-label" }):
+                                                                            </div>
+                                                                            <div class="col-xs-8">
+                                                                                @Html.TextBoxFor(model => model.Email2, new { @class = "form-control" })
+                                                                            </div>
+                                                                            <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                                                                @Html.ValidationMessageFor(model => model.Email2)
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row ">
+                                                                            <div class="col-xs-3 element-left">
+                                                                                @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label" }):
+                                                                            </div>
+                                                                            <div class="col-xs-8">
+                                                                                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                                                                            </div>
+                                                                            <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                                                                @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row ">
+                                                                            <div class="col-xs-3 element-left">
+                                                                                @Html.LabelFor(model => model.MobileNumber, new { @class = "control-label" }):
+                                                                            </div>
+                                                                            <div class="col-xs-8">
+                                                                                @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control" })
+                                                                            </div>
+                                                                            <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                                                                @Html.ValidationMessageFor(model => model.MobileNumber)
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row ">
+                                                                            <div class="col-xs-3 element-left">
+                                                                                @Html.LabelFor(model => model.MobileNumber2, new { @class = "control-label" }):
+                                                                            </div>
+                                                                            <div class="col-xs-8">
+                                                                                @Html.TextBoxFor(model => model.MobileNumber2, new { @class = "form-control" })
+                                                                            </div>
+                                                                            <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                                                                @Html.ValidationMessageFor(model => model.MobileNumber2)
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row ">
+                                                                            <div class="col-xs-3 element-left">
+                                                                                @Html.LabelFor(model => model.OfficeNumber, new { @class = "control-label" }):
+                                                                            </div>
+                                                                            <div class="col-xs-8">
+                                                                                @Html.TextBoxFor(model => model.OfficeNumber, new { @class = "form-control" })
+                                                                            </div>
+                                                                            <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                                                                @Html.ValidationMessageFor(model => model.OfficeNumber)
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row col-xs-12 col-xs-offset-1" ng-controller="UpsertDwellingCtrl" ng-init='documentTypeList = @Html.Raw(ViewBag.DocumentTypeList)'>
+
+                                                                            <label class="control-label col-xs-3 element-left">
+                                                                                *@ResManagment.DOCUMENT_TYPE_LABEL:
+                                                                            </label>
+
+                                                                            <div class="col-xs-8">
+                                                                                <select class="form-control col-xs-10 element-left" ng-model="documentTypeModel" ng-options="s as s.Value for s in documentTypeList" ng-change="onChangeDocumentType()"></select>
+                                                                                @Html.HiddenFor(m => m.DocumentTypeId, new { ng_model = "DocumentTypeId", ng_update_hidden = "", ng_init = "DocumentTypeId = " + Model.DocumentTypeId })
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row ">
+                                                                            <div>
+                                                                                @Html.LabelFor(model => model.DocumentNumber, new { @class = "control-label col-xs-3 element-left" })
+                                                                            </div>
+                                                                            <div class="col-xs-8">
+                                                                                @Html.TextBoxFor(model => model.OfficeNumber, new { @class = "form-control" })
+                                                                            </div>
+                                                                            <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                                                                @Html.ValidationMessageFor(model => model.OfficeNumber)
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-xs-3 element-left">
+                                                                                @Html.LabelFor(model => model.Comments, new { @class = "control-label" }):
+                                                                            </div>
+                                                                            <div class="col-xs-8">
+                                                                                @Html.TextAreaFor(model => model.Comments, new { @class = "form-control" })
+                                                                            </div>
+                                                                            <div class="col-xs-8 col-xs-offset-3 control-label element-left">
+                                                                                @Html.ValidationMessageFor(model => model.Comments)
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </form>
+
+                                                        <br />
+
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <div ng-show="MsgError" class="alert alert-danger element-center">
+                                                                    {{MsgError}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <span class="btn btn-default btn-sm" ng-click="cancel()">
+                                                            @ResShared.BUTTON_CANCEL
+                                                        </span>
+                                                        <span class="btn btn-default btn-primary btn-sm" ng-disabled="WaitFor==true"
+                                                              ng-click="submit('#ResidentForm', '@Url.Action("DoUpsert", "Resident", new {area = "Managment"})')">
+                                                            @ResShared.BUTTON_SAVE
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
