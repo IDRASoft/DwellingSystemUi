@@ -10,6 +10,7 @@ using DwellingRepository.Database;
 using Infrastructure.JqGrid;
 using Infrastructure.JqGrid.Model;
 
+
 namespace DwellingRepository.Common
 {
     public class GenericRepository<TEntity> : BaseRepository where TEntity : class

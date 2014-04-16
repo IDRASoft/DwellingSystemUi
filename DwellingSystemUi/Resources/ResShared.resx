@@ -135,6 +135,9 @@
   <data name="INFO_REGISTER_SAVED" xml:space="preserve">
     <value>El registro fue guardado de forma exitosa</value>
   </data>
+  <data name="RESIDENT_LABEL" xml:space="preserve">
+    <value>Residente</value>
+  </data>
   <data name="TITLE_MENU_DWELLING" xml:space="preserve">
     <value>Viviendas</value>
   </data>
@@ -155,5 +158,8 @@
   </data>
   <data name="TITLE_REGISTER_SUCCESS" xml:space="preserve">
     <value>Registro exitoso</value>
+  </data>
+  <data name="TITLE_RESIDENTS" xml:space="preserve">
+    <value>Residentes</value>
   </data>
 </root>

@@ -5,6 +5,13 @@
 
 };
 
+window.showUpsertRel = function (idEntA,idEntB, divScope, urlToGo, jqGridToUse) {
+    var scope = angular.element($(divScope)).scope();
+    scope.show({ idA: idEntA, idB:idEntB }, urlToGo).
+        then(function () { $(jqGridToUse).trigger("reloadGrid"); });
+
+};
+
 window.showConfirmService = function (id, divScope, urlToGo, jqGridToUse) {
     var scope = angular.element($(divScope)).scope();
     scope.doConfirm({ id: id }, urlToGo).

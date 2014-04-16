@@ -177,6 +177,7 @@
           <Property Name="Gender" Type="bit" Nullable="false" />
           <Property Name="BirthDay" Type="datetime" />
           <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="IsObsolete" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Street">
           <Key>
@@ -195,6 +196,20 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="DwellingId" Type="int" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="170" />
           <Property Name="DwellingType" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VwResident">
+          <Key>
+            <PropertyRef Name="DwellingId" />
+            <PropertyRef Name="ResidentId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="DwellingId" Type="int" Nullable="false" />
+          <Property Name="ResidentId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="1001" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK_Building_Street">
           <End Role="Street" Type="Self.Street" Multiplicity="1" />
@@ -434,6 +449,15 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
     [VwDwellingData].[DwellingType] AS [DwellingType]
     FROM [dbo].[VwDwellingData] AS [VwDwellingData]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="VwResident" EntityType="Self.VwResident" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwResident].[DwellingId] AS [DwellingId], 
+    [VwResident].[ResidentId] AS [ResidentId], 
+    [VwResident].[Name] AS [Name], 
+    [VwResident].[PhoneNumber] AS [PhoneNumber], 
+    [VwResident].[Email] AS [Email]
+    FROM [dbo].[VwResident] AS [VwResident]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Building_Street" Association="Self.FK_Building_Street">
             <End Role="Street" EntitySet="Street" />
             <End Role="Building" EntitySet="Building" />
@@ -526,6 +550,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <EntitySet Name="Resident" EntityType="DwellingModel.Resident" />
           <EntitySet Name="Street" EntityType="DwellingModel.Street" />
           <EntitySet Name="VwDwellingData" EntityType="DwellingModel.VwDwellingData" />
+          <EntitySet Name="VwResident" EntityType="DwellingModel.VwResident" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="DwellingModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -783,6 +808,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="Gender" Type="Boolean" Nullable="false" />
           <Property Name="BirthDay" Type="DateTime" Precision="3" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DocumentType" Relationship="DwellingModel.FK_Resident_DocumentType" FromRole="Resident" ToRole="DocumentType" />
           <NavigationProperty Name="DwellingResidentRel" Relationship="DwellingModel.FK_DwellingResidentRel_Resident" FromRole="Resident" ToRole="DwellingResidentRel" />
         </EntityType>
@@ -803,6 +829,18 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <Property Name="DwellingId" Type="Int32" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="170" FixedLength="false" Unicode="false" />
           <Property Name="DwellingType" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VwResident">
+          <Key>
+            <PropertyRef Name="DwellingId" />
+            <PropertyRef Name="ResidentId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="DwellingId" Type="Int32" Nullable="false" />
+          <Property Name="ResidentId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1001" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
           <End Type="DwellingModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -1159,6 +1197,7 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
           <EntitySetMapping Name="Resident">
             <EntityTypeMapping TypeName="DwellingModel.Resident">
               <MappingFragment StoreEntitySet="Resident">
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
@@ -1191,6 +1230,17 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene 
               <MappingFragment StoreEntitySet="VwDwellingData">
                 <ScalarProperty Name="DwellingType" ColumnName="DwellingType" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwResident">
+            <EntityTypeMapping TypeName="DwellingModel.VwResident">
+              <MappingFragment StoreEntitySet="VwResident">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
                 <ScalarProperty Name="DwellingId" ColumnName="DwellingId" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,4 +1,6 @@
-﻿using Infrastructure.Extensions;
+﻿
+
+using Infrastructure.Extensions;
 
 namespace DwellingRepository.Database
 {

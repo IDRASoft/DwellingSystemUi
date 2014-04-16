@@ -34,6 +34,7 @@ namespace DwellingRepository.Database
         public bool Gender { get; set; }
         public Nullable<System.DateTime> BirthDay { get; set; }
         public string Comments { get; set; }
+        public bool IsObsolete { get; set; }
     
         public virtual DocumentType DocumentType { get; set; }
         public virtual ICollection<DwellingResidentRel> DwellingResidentRel { get; set; }

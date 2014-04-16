@@ -115,6 +115,15 @@ namespace DwellingSystemUi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Residente.
+        /// </summary>
+        public static string RESIDENT_LABEL {
+            get {
+                return ResourceManager.GetString("RESIDENT_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Viviendas.
         /// </summary>
         public static string TITLE_MENU_DWELLING {
@@ -174,6 +183,15 @@ namespace DwellingSystemUi.Resources {
         public static string TITLE_REGISTER_SUCCESS {
             get {
                 return ResourceManager.GetString("TITLE_REGISTER_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Residentes.
+        /// </summary>
+        public static string TITLE_RESIDENTS {
+            get {
+                return ResourceManager.GetString("TITLE_RESIDENTS", resourceCulture);
             }
         }
     }

@@ -7,6 +7,7 @@ using DwellingRepository.Database;
 using DwellingRepository.Models.Shared;
 using DwellingSystemUi.Controllers;
 using DwellingSystemUi.Resources;
+using DwellingSystemUi.Services;
 using Infrastructure.JqGrid.Model;
 
 namespace DwellingSystemUi.Areas.Managment.Controllers
@@ -14,28 +15,38 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
     public class ResidentController : BaseController
     {
 
-        public ActionResult List(JqGridFilterModel opts)
+        public ActionResult List(JqGridFilterModel opts, int? dwellingId)
         {
-            var genericRepository = new GenericRepository<Resident>(Db);
-            return Json(genericRepository.JqGridFindBy(opts, VwDwellingDataJson.Key, VwDwellingDataJson.Columns));
+            if (dwellingId == null)
+                dwellingId = 0;
+
+            var genericRepository = new GenericRepository<VwResident>(Db);
+
+            var lista= genericRepository.JqGridFindBy(opts, VwResidentDataJson.Key, VwResidentDataJson.Columns,m => m.DwellingId == dwellingId);
+
+            return Json(lista);
         }
 
-        public ActionResult Upsert(int dwellingId, int residentId)
+        public ActionResult Upsert(int? idA, int? idB)
         {
             ViewBag.DocumentTypeList = new JavaScriptSerializer().Serialize(CatalogRepository.GetDocumentTypeCat(Db));
 
             Resident model;
 
-            if (residentId > 0)
+            if (idB!=null && idB > 0)//id del residente
             {
-                model = new GenericRepository<Resident>(Db).FindById(residentId);
-                model.DwellingResidentRelToUSe = model.DwellingResidentRel.First(m => m.DwellingId == dwellingId);
+                model = new GenericRepository<Resident>(Db).FindById(idB);
+                model.DwellingResidentRelToUSe = model.DwellingResidentRel.First(m => m.DwellingId == idA && m.ResidentId==idB);
             }
             else
             {
+                var dwellingId=0;
+
+                if (idA != null) dwellingId = idA.Value;
+
                 model = new Resident
                         {
-                            DwellingResidentRelToUSe = new DwellingResidentRel{DwellingId = dwellingId},
+                            //DwellingResidentRelToUSe = new DwellingResidentRel { DwellingId = dwellingId },
                             DocumentTypeId = 0
                         };
             }
@@ -68,7 +79,9 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
                             });
             }
 
-            return Json("");
+            var residentSvc = new ResidentService(Db);
+
+            return Json(residentSvc.SaveUpdateResident(model));
         }
         
         [HttpPost]

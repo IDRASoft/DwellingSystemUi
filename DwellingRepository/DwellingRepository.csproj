@@ -125,13 +125,16 @@
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\ResidentMetadata.cs" />
+    <Compile Include="Database\BuildingMetadata.cs" />
     <Compile Include="Database\Street.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\VwDwellingData.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\BuildingMetadata.cs" />
+    <Compile Include="Database\VwResident.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Shared\ComboBoxModel.cs" />
     <Compile Include="Models\Shared\EntityConstants.cs" />
     <Compile Include="Models\Shared\ResponseMessageModel.cs" />

@@ -23,7 +23,7 @@ namespace DwellingSystemUi.Services
                 if (model.ResidentId > 0)
                 {
                     var modelDb = _db.Resident.First(m => m.ResidentId == model.ResidentId);
-                  //  modelDb = this.FixResidentValues(modelDb,model);
+                    modelDb = this.UpdateResidentValues(modelDb,model);
                 }
                 else
                 {
@@ -52,10 +52,6 @@ namespace DwellingSystemUi.Services
 
         public Resident UpdateResidentValues(Resident modelDb,Resident model)
         {
-
-        /*for (var i = modelDb.DwellingResidentRel.Count; i >= 0; i--)
-                modelDb.DwellingResidentRel.Remove(model.DwellingResidentRel.ElementAt(i));*/
-            
 
             model.DwellingResidentRel.Add(model.DwellingResidentRelToUSe);
 
