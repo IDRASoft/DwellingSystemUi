@@ -121,18 +121,33 @@
     <Compile Include="Database\DwellingResidentRel.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Periodicity.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Resident.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\ResidentMetadata.cs" />
     <Compile Include="Database\BuildingMetadata.cs" />
+    <Compile Include="Database\Service.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Street.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Tax.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TaxServiceRel.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\VwDwellingData.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\VwResident.cs">
+      <DependentUpon>DwellingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\VwServiceData.cs">
       <DependentUpon>DwellingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shared\ComboBoxModel.cs" />

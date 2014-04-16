@@ -19,13 +19,14 @@
             <div class="modal-header">
                 <div class="alert alert-warning">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="element-center">AGREGAR VIVIENDA</h4>
+                    <h4 class="element-center">@ResShared.RESIDENT_LABEL</h4>
                 </div>
             </div>
             <div class="modal-body">
                 <form id="ResidentForm" name="ResidentForm" ng-submit="submit('#ResidentForm')" class="form-horizontal" role="form">
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(model => model.ResidentId)
+                    @Html.HiddenFor(model => model.DwellingResidentRelToUSe.DwellingId)
 
                     <div class="panel panel-default panel-primary">
                         <div class="panel-heading">

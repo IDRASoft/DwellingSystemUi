@@ -12,6 +12,18 @@ window.showUpsertRel = function (idEntA,idEntB, divScope, urlToGo, jqGridToUse) 
 
 };
 
+window.showActiveService = function (id, divScope, urlToGo, jqGridToUse) {
+    var scope = angular.element($(divScope)).scope();
+    scope.doActiveServ({ id: id }, urlToGo).
+        then(function () { $(jqGridToUse).trigger("reloadGrid"); });
+};
+
+window.showDeactiveService = function (id, divScope, urlToGo, jqGridToUse) {
+    var scope = angular.element($(divScope)).scope();
+    scope.doDeactiveServ({ id: id }, urlToGo).
+        then(function () { $(jqGridToUse).trigger("reloadGrid"); });
+};
+
 window.showConfirmService = function (id, divScope, urlToGo, jqGridToUse) {
     var scope = angular.element($(divScope)).scope();
     scope.doConfirm({ id: id }, urlToGo).

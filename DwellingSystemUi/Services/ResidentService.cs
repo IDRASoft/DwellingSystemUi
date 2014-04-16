@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using DwellingRepository.Database;
 using DwellingRepository.Models.Shared;
@@ -27,6 +28,8 @@ namespace DwellingSystemUi.Services
                 }
                 else
                 {
+                    model.DwellingResidentRel = new Collection<DwellingResidentRel>();
+                    model.DwellingResidentRel.Add(model.DwellingResidentRelToUSe);
                     _db.Resident.Add(model);
                 }
 
@@ -52,10 +55,7 @@ namespace DwellingSystemUi.Services
 
         public Resident UpdateResidentValues(Resident modelDb,Resident model)
         {
-
-            model.DwellingResidentRel.Add(model.DwellingResidentRelToUSe);
-
-            modelDb.DocumentType = null;
+            model.DwellingResidentRel = new Collection<DwellingResidentRel> {model.DwellingResidentRelToUSe};
 
             modelDb.Name = model.Name;
             modelDb.LastName = model.LastName;

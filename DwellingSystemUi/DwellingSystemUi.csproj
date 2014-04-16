@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Managment\Controllers\MainController.cs" />
+    <Compile Include="Areas\Managment\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Managment\Controllers\ResidentController.cs" />
     <Compile Include="Areas\Managment\ManagmentAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -188,6 +189,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResManagment.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ResService.Designer.cs">
+      <DependentUpon>ResService.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\ResShared.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -210,6 +216,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker\bootstrap-datepicker.es.js" />
+    <Content Include="Content\datepicker\bootstrap-datepicker.js" />
     <Content Include="Content\Images\icons\ajax_loader.gif" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -310,6 +318,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\App\address\addressCtrl.js" />
     <Content Include="Scripts\App\address\zipSearchDrct.js" />
+    <Content Include="Scripts\App\Service\serviceCtrl.js" />
     <Content Include="Scripts\App\Managment\DwellingCtrl.js" />
     <Content Include="Scripts\App\Shared\hiddenDrct.js" />
     <Content Include="Scripts\App\Shared\mainApp.js" />
@@ -332,6 +341,9 @@
     <Content Include="Areas\Managment\Views\Main\Index.cshtml" />
     <Content Include="Areas\Managment\Views\Main\Upsert.cshtml" />
     <Content Include="Areas\Managment\Views\Main\_EditAddress.cshtml" />
+    <Content Include="Areas\Managment\Views\Service\Index.cshtml" />
+    <Content Include="Areas\Managment\Views\Service\Upsert.cshtml" />
+    <Content Include="Content\datepicker\datepicker.css" />
     <Content Include="Areas\Managment\Views\Resident\Upsert.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
@@ -705,6 +717,10 @@
     <EmbeddedResource Include="Resources\ResManagment.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResManagment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ResService.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResShared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

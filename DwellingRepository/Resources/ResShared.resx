@@ -120,6 +120,9 @@
   <data name="LENGTH_FIELD_50" xml:space="preserve">
     <value>La longitud del campo no debe ser mayor a 50</value>
   </data>
+  <data name="MIN_MAX_VALUE" xml:space="preserve">
+    <value>El valor de {0} debe estar entre {1} y {2}</value>
+  </data>
   <data name="REQUIRED_FIELD" xml:space="preserve">
     <value>{0} es un campo requerido</value>
   </data>

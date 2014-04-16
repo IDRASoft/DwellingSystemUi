@@ -36,7 +36,7 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
             if (idB!=null && idB > 0)//id del residente
             {
                 model = new GenericRepository<Resident>(Db).FindById(idB);
-                model.DwellingResidentRelToUSe = model.DwellingResidentRel.First(m => m.DwellingId == idA && m.ResidentId==idB);
+                model.DwellingResidentRelToUSe = model.DwellingResidentRel.First(m => m.DwellingId == idA && m.ResidentId == idB);
             }
             else
             {
@@ -46,7 +46,7 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
 
                 model = new Resident
                         {
-                            //DwellingResidentRelToUSe = new DwellingResidentRel { DwellingId = dwellingId },
+                            DwellingResidentRelToUSe = new DwellingResidentRel { DwellingId = dwellingId },
                             DocumentTypeId = 0
                         };
             }
@@ -58,6 +58,8 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DoUpsert(Resident model)
         {
+            model.DocumentType = null;
+            model.DwellingResidentRel = null;
 
             ModelState.Clear();
 

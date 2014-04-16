@@ -79,6 +79,15 @@ namespace DwellingSystemUi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vivienda.
+        /// </summary>
+        public static string DWELLING_LABEL {
+            get {
+                return ResourceManager.GetString("DWELLING_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Existe uno o más campos inválidos. Por favor revise sus datos e intente de nuevo..
         /// </summary>
         public static string ERROR_INVALID_MODEL {
@@ -138,6 +147,15 @@ namespace DwellingSystemUi.Resources {
         public static string TITLE_MENU_MANAGMENT {
             get {
                 return ResourceManager.GetString("TITLE_MENU_MANAGMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Servicios.
+        /// </summary>
+        public static string TITLE_MENU_SERVICE {
+            get {
+                return ResourceManager.GetString("TITLE_MENU_SERVICE", resourceCulture);
             }
         }
         

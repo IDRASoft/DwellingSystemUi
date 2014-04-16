@@ -117,55 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_CANCEL" xml:space="preserve">
-    <value>Cancelar</value>
+  <data name="LABEL_DAYS_EXTENSION" xml:space="preserve">
+    <value>Días de prórroga</value>
   </data>
-  <data name="BUTTON_SAVE" xml:space="preserve">
-    <value>Guardar</value>
+  <data name="LABEL_DAY_TO_PAY" xml:space="preserve">
+    <value>Día de pago</value>
   </data>
-  <data name="ERROR_INVALID_MODEL" xml:space="preserve">
-    <value>Existe uno o más campos inválidos. Por favor revise sus datos e intente de nuevo.</value>
+  <data name="LABEL_NAME" xml:space="preserve">
+    <value>Nombre</value>
   </data>
-  <data name="ERROR_MODEL_NOTFOUND" xml:space="preserve">
-    <value>No se ha encontrado el registro</value>
+  <data name="LABEL_PERIODICITY" xml:space="preserve">
+    <value>Frecuencia</value>
   </data>
-  <data name="ERROR_UNKOWN" xml:space="preserve">
-    <value>Error desconocido</value>
+  <data name="LABEL_START_DATE" xml:space="preserve">
+    <value>Vigencia</value>
   </data>
-  <data name="INFO_REGISTER_SAVED" xml:space="preserve">
-    <value>El registro fue guardado de forma exitosa</value>
-  </data>
-  <data name="RESIDENT_LABEL" xml:space="preserve">
-    <value>Residente</value>
-  </data>
-  <data name="TITLE_MENU_DWELLING" xml:space="preserve">
-    <value>Viviendas</value>
-  </data>
-  <data name="TITLE_MENU_MANAGMENT" xml:space="preserve">
-    <value>Administración</value>
-  </data>
-  <data name="TITLE_OBSOLETE_FAILED" xml:space="preserve">
-    <value>Eliminado fallido</value>
-  </data>
-  <data name="TITLE_OBSOLETE_SUCCESS" xml:space="preserve">
-    <value>Eliminado exitoso</value>
-  </data>
-  <data name="TITLE_MENU_SERVICE" xml:space="preserve">
-    <value>Servicios</value>
-  </data>
-  <data name="TITLE_PROCESSING" xml:space="preserve">
-    <value>Procesando su petición...</value>
-  </data>
-  <data name="TITLE_REGISTER_FAILED" xml:space="preserve">
-    <value>Registro fallido</value>
-  </data>
-  <data name="TITLE_REGISTER_SUCCESS" xml:space="preserve">
-    <value>Registro exitoso</value>
-  </data>
-  <data name="TITLE_RESIDENTS" xml:space="preserve">
-    <value>Residentes</value>
-  </data>
-  <data name="DWELLING_LABEL" xml:space="preserve">
-    <value>Vivienda</value>
+  <data name="LABEL_VALUE" xml:space="preserve">
+    <value>Precio</value>
   </data>
 </root>

@@ -22,16 +22,16 @@
     };
     
     function initDocumentType() {
-        /*if ($scope.DocumentTypeId > 0) {
+        if ($scope.DocumentTypeId > 0) {
             for (var a = 0; a < $scope.documentTypeList.length; a++) {
                 if ($scope.DocumentTypeId == $scope.documentTypeList[a].KeyId) {
                     $scope.documentTypeModel = $scope.documentTypeList[a];
                 }
             }
-        } else {*/
+        } else {
             $scope.documentTypeModel = $scope.documentTypeList[0];
             $scope.DocumentTypeId = $scope.documentTypeModel.KeyId;
-      //  }
+      }
     };
 
     $scope.onChangeStreet = function() {

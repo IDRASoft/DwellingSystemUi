@@ -1,0 +1,211 @@
+﻿@model DwellingRepository.Database.Service
+@using ResShared = DwellingSystemUi.Resources.ResShared
+@using ResService = DwellingSystemUi.Resources.ResService
+@{
+    Layout = null;
+    var iCount = 0;
+    var contains = false;
+}
+
+<script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Content/datepicker/bootstrap-datepicker.es.js"></script>
+<link href="~/Content/datepicker/datepicker.css" rel="stylesheet" />
+<script>
+    function formatDatePicker() {
+        var fechaInicio = $("#PeriodStart").val();
+        if(fechaInicio.length > 0)
+            $("#PeriodStart").val(fechaInicio.substring(0, 10));
+        var fechaFin = $("#PeriodEnd").val();
+        if (fechaFin.length > 0)
+            $("#PeriodEnd").val(fechaFin.substring(0, 10));
+    }
+    $(document).ready(function () {
+        
+        window.showModalFormDlg("#dlgUpModalId", "#ServiceForm");
+        $('#sandbox-container .input-daterange').datepicker({
+            format: "dd/mm/yyyy",
+            startDate: "today",
+            language: "es",
+            todayBtn: true,
+            keyboardNavigation: false,
+            forceParse: false,
+            hour: false
+        });
+        /*
+        $("#sandbox-container").datepicker().on('onRender', function (e) {
+            $("#EndDate").text(e.format());
+
+        });*/
+        formatDatePicker();
+    });
+   
+</script>
+
+<div id="dlgUpModalId" class="modal fade" ng-controller="upsertController" ng-cloak>
+    <div class="modal-dialog" style="width:450px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="element-center">Agregar Servicio</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="ServiceForm" name="ServiceForm" ng-submit="submit('#ServiceForm')" class="form-horizontal" role="form" onsubmit="return createListTax()">
+                    @Html.HiddenFor(model => model.ServiceId)
+                    <div class="row">
+                        <div class="col-xs-4 element-right">
+                            @Html.LabelFor(model => model.Name)
+                        </div>
+                        <div class="col-xs-7">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "input-sm form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 element-center">
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                       
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-4 element-right">
+                            @Html.LabelFor(model => model.Value)
+                        </div>
+                        <div class="col-xs-7">
+                            @Html.TextBoxFor(model => model.Value, new { @class = "input-sm form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 element-center">
+                            @Html.ValidationMessageFor(model => model.Value)
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-4 element-right">
+                            @Html.LabelFor(model => model.DaysToPay)
+                        </div>
+                        <div class="col-xs-7">
+                            @Html.TextBoxFor(model => model.DaysToPay, new { @class = "input-sm form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 element-center">
+                            @Html.ValidationMessageFor(model => model.DaysToPay)
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-4 element-right">
+                            @Html.LabelFor(model => model.DaysExtension)
+                        </div>
+                        <div class="col-xs-7">
+                            @Html.TextBoxFor(model => model.DaysExtension, new { @class = "input-sm form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 element-center">
+                            @Html.ValidationMessageFor(model => model.DaysExtension)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-3 element-right">
+                            @Html.LabelFor(model => model.PeriodStart)
+                        </div>
+                        <div class="col-xs-8" id="sandbox-container">
+                            <div class="input-daterange input-group" id="datepicker" data-date-format="dd/mm/yyyy">
+                                @Html.TextBoxFor(model => model.PeriodStart, new { @class = "input-sm form-control"})
+                                <span class="input-group-addon"> hasta </span>
+                                @Html.TextBoxFor(model => model.PeriodEnd, new { @class = "input-sm form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 element-center">
+                            @Html.ValidationMessageFor(model => model.PeriodStart)
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                       
+                        <div class="col-xs-4 element-right">@Html.LabelFor(model=> model.PeriodicityId)</div>
+                        <div class="col-xs-7">
+                            @Html.DropDownListFor(model => model.PeriodicityId, new SelectList(ViewBag.listPeriodicity, "KeyId", "Value"), new { @class = "form-control element-center-auto" })
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class=" col-xs-10 col-xs-offset-1">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">@ResService.CHECK_TAX</div>
+                                <div class="panel-body" >
+
+                                    <div class="row">
+                                     
+                                        @foreach (var item in ViewBag.listTax)
+                                        {
+                                            contains = false;
+                                            if (Model.ListTax != null)
+                                            {
+                                                foreach (var relServ in Model.ListTax)
+                                                {
+                                                    if (relServ.KeyId == item.KeyId)
+                                                    {
+                                                        contains = true;
+                                                    }
+                                                }
+                                            }
+                                            if (contains)
+                                                {
+                                                    <div class="col-xs-10 col-xs-offset-2">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="hidden" value="@item.Value" name="ListTax[@iCount].Value" />
+                                                                <input type="checkbox" checked="checked" value="@item.KeyId" name='ListTax[@(iCount++)].KeyId'/>@item.Value 
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-xs-10 col-xs-offset-2">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="hidden" value="@item.Value" name="ListTax[@iCount].Value" />
+                                                                <input type="checkbox" value="@item.KeyId" name='ListTax[@(iCount++)].KeyId' />@item.Value
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br />
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div ng-show="MsgError" class="alert alert-danger element-center">
+                            {{MsgError}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-default btn-sm" ng-click="cancel()">
+                    @ResShared.BUTTON_CANCEL
+                </span>
+                <span class="btn btn-default btn-primary btn-sm" ng-disabled="WaitFor==true"
+                      ng-click="submit('#ServiceForm', '@Url.Action("DoUpsert", "Service", new {area = "Managment"})')">
+                    @ResShared.BUTTON_SAVE
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

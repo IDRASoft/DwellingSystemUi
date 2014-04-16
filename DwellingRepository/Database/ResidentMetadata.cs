@@ -11,6 +11,7 @@ namespace DwellingRepository.Database
     {
         public DwellingResidentRel DwellingResidentRelToUSe { get; set; }
 
+        public int DwellingResidentId { get; set; }
     }
     public class ResidentMetadata
     {

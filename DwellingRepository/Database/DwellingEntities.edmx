@@ -158,6 +158,15 @@
           <Property Name="ResidentId" Type="int" Nullable="false" />
           <Property Name="IsPrincipal" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Periodicity">
+          <Key>
+            <PropertyRef Name="PeriodicityId" />
+          </Key>
+          <Property Name="PeriodicityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
         <EntityType Name="Resident">
           <Key>
             <PropertyRef Name="ResidentId" />
@@ -179,6 +188,22 @@
           <Property Name="Comments" Type="varchar(max)" />
           <Property Name="IsObsolete" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PeriodStart" Type="date" Nullable="false" />
+          <Property Name="PeriodEnd" Type="date" />
+          <Property Name="PeriodicityId" Type="int" Nullable="false" />
+          <Property Name="DaysToPay" Type="int" Nullable="false" />
+          <Property Name="DaysExtension" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsObsolete" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Street">
           <Key>
             <PropertyRef Name="StreetId" />
@@ -186,6 +211,24 @@
           <Property Name="StreetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="TaxId" />
+          </Key>
+          <Property Name="TaxId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="250" />
+          <Property Name="IsObsolete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaxServiceRel">
+          <Key>
+            <PropertyRef Name="TaxServiceRelId" />
+          </Key>
+          <Property Name="TaxServiceRelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaxId" Type="int" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwDwellingData' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -210,6 +253,26 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
           <Property Name="Name" Type="varchar" MaxLength="1001" Nullable="false" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
           <Property Name="Email" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwServiceData' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VwServiceData">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Value" />
+            <PropertyRef Name="Periodicity" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="IsObsolete" />
+          </Key>
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StartDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="EndDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Periodicity" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="IsObsolete" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Building_Street">
           <End Role="Street" Type="Self.Street" Multiplicity="1" />
@@ -411,6 +474,18 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Service_Periodicity">
+          <End Role="Periodicity" Type="Self.Periodicity" Multiplicity="1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periodicity">
+              <PropertyRef Name="PeriodicityId" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="PeriodicityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_State_Country">
           <End Role="CatCountry" Type="Self.CatCountry" Multiplicity="1" />
           <End Role="CatState" Type="Self.CatState" Multiplicity="*" />
@@ -420,6 +495,30 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
             </Principal>
             <Dependent Role="CatState">
               <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaxServiceRel_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="TaxServiceRel" Type="Self.TaxServiceRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="TaxServiceRel">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaxServiceRel_Tax">
+          <End Role="Tax" Type="Self.Tax" Multiplicity="1" />
+          <End Role="TaxServiceRel" Type="Self.TaxServiceRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tax">
+              <PropertyRef Name="TaxId" />
+            </Principal>
+            <Dependent Role="TaxServiceRel">
+              <PropertyRef Name="TaxId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -440,8 +539,12 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
           <EntitySet Name="DwellingLocation" EntityType="Self.DwellingLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DwellingRel" EntityType="Self.DwellingRel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DwellingResidentRel" EntityType="Self.DwellingResidentRel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periodicity" EntityType="Self.Periodicity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resident" EntityType="Self.Resident" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Street" EntityType="Self.Street" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tax" EntityType="Self.Tax" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaxServiceRel" EntityType="Self.TaxServiceRel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VwDwellingData" EntityType="Self.VwDwellingData" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VwDwellingData].[DwellingId] AS [DwellingId], 
@@ -457,6 +560,18 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
     [VwResident].[PhoneNumber] AS [PhoneNumber], 
     [VwResident].[Email] AS [Email]
     FROM [dbo].[VwResident] AS [VwResident]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwServiceData" EntityType="Self.VwServiceData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwServiceData].[ServiceId] AS [ServiceId], 
+    [VwServiceData].[Name] AS [Name], 
+    [VwServiceData].[Value] AS [Value], 
+    [VwServiceData].[StartDate] AS [StartDate], 
+    [VwServiceData].[EndDate] AS [EndDate], 
+    [VwServiceData].[Periodicity] AS [Periodicity], 
+    [VwServiceData].[Active] AS [Active], 
+    [VwServiceData].[IsObsolete] AS [IsObsolete]
+    FROM [dbo].[VwServiceData] AS [VwServiceData]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Building_Street" Association="Self.FK_Building_Street">
             <End Role="Street" EntitySet="Street" />
@@ -522,9 +637,21 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
             <End Role="DocumentType" EntitySet="DocumentType" />
             <End Role="Resident" EntitySet="Resident" />
           </AssociationSet>
+          <AssociationSet Name="FK_Service_Periodicity" Association="Self.FK_Service_Periodicity">
+            <End Role="Periodicity" EntitySet="Periodicity" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
           <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
             <End Role="CatCountry" EntitySet="CatCountry" />
             <End Role="CatState" EntitySet="CatState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxServiceRel_Service" Association="Self.FK_TaxServiceRel_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="TaxServiceRel" EntitySet="TaxServiceRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxServiceRel_Tax" Association="Self.FK_TaxServiceRel_Tax">
+            <End Role="Tax" EntitySet="Tax" />
+            <End Role="TaxServiceRel" EntitySet="TaxServiceRel" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -614,6 +741,23 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
           <AssociationSet Name="AspNetUserRoles" Association="DwellingModel.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Periodicity" EntityType="DwellingModel.Periodicity" />
+          <EntitySet Name="Service" EntityType="DwellingModel.Service" />
+          <EntitySet Name="Tax" EntityType="DwellingModel.Tax" />
+          <EntitySet Name="TaxServiceRel" EntityType="DwellingModel.TaxServiceRel" />
+          <EntitySet Name="VwServiceData" EntityType="DwellingModel.VwServiceData" />
+          <AssociationSet Name="FK_Service_Periodicity" Association="DwellingModel.FK_Service_Periodicity">
+            <End Role="Periodicity" EntitySet="Periodicity" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxServiceRel_Service" Association="DwellingModel.FK_TaxServiceRel_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="TaxServiceRel" EntitySet="TaxServiceRel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxServiceRel_Tax" Association="DwellingModel.FK_TaxServiceRel_Tax">
+            <End Role="Tax" EntitySet="Tax" />
+            <End Role="TaxServiceRel" EntitySet="TaxServiceRel" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRoles">
@@ -1030,6 +1174,109 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
           <End Type="DwellingModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
           <End Type="DwellingModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
         </Association>
+        <EntityType Name="Periodicity">
+          <Key>
+            <PropertyRef Name="PeriodicityId" />
+          </Key>
+          <Property Name="PeriodicityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Service" Relationship="DwellingModel.FK_Service_Periodicity" FromRole="Periodicity" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="PeriodStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PeriodEnd" Type="DateTime" Precision="0" />
+          <Property Name="PeriodicityId" Type="Int32" Nullable="false" />
+          <Property Name="DaysToPay" Type="Int32" Nullable="false" />
+          <Property Name="DaysExtension" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Periodicity" Relationship="DwellingModel.FK_Service_Periodicity" FromRole="Service" ToRole="Periodicity" />
+          <NavigationProperty Name="TaxServiceRel" Relationship="DwellingModel.FK_TaxServiceRel_Service" FromRole="Service" ToRole="TaxServiceRel" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="TaxId" />
+          </Key>
+          <Property Name="TaxId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Comments" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TaxServiceRel" Relationship="DwellingModel.FK_TaxServiceRel_Tax" FromRole="Tax" ToRole="TaxServiceRel" />
+        </EntityType>
+        <EntityType Name="TaxServiceRel">
+          <Key>
+            <PropertyRef Name="TaxServiceRelId" />
+          </Key>
+          <Property Name="TaxServiceRelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaxId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="DwellingModel.FK_TaxServiceRel_Service" FromRole="TaxServiceRel" ToRole="Service" />
+          <NavigationProperty Name="Tax" Relationship="DwellingModel.FK_TaxServiceRel_Tax" FromRole="TaxServiceRel" ToRole="Tax" />
+        </EntityType>
+        <EntityType Name="VwServiceData">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Value" />
+            <PropertyRef Name="Periodicity" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="IsObsolete" />
+          </Key>
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="StartDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Periodicity" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Service_Periodicity">
+          <End Type="DwellingModel.Periodicity" Role="Periodicity" Multiplicity="1" />
+          <End Type="DwellingModel.Service" Role="Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periodicity">
+              <PropertyRef Name="PeriodicityId" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="PeriodicityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaxServiceRel_Service">
+          <End Type="DwellingModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="DwellingModel.TaxServiceRel" Role="TaxServiceRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="TaxServiceRel">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaxServiceRel_Tax">
+          <End Type="DwellingModel.Tax" Role="Tax" Multiplicity="1" />
+          <End Type="DwellingModel.TaxServiceRel" Role="TaxServiceRel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tax">
+              <PropertyRef Name="TaxId" />
+            </Principal>
+            <Dependent Role="TaxServiceRel">
+              <PropertyRef Name="TaxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1253,6 +1500,67 @@ advertencia 6002: La tabla o vista 'DwellingSystem.dbo.VwResident' no tiene defi
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Periodicity">
+            <EntityTypeMapping TypeName="DwellingModel.Periodicity">
+              <MappingFragment StoreEntitySet="Periodicity">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PeriodicityId" ColumnName="PeriodicityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="DwellingModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DaysExtension" ColumnName="DaysExtension" />
+                <ScalarProperty Name="DaysToPay" ColumnName="DaysToPay" />
+                <ScalarProperty Name="PeriodicityId" ColumnName="PeriodicityId" />
+                <ScalarProperty Name="PeriodEnd" ColumnName="PeriodEnd" />
+                <ScalarProperty Name="PeriodStart" ColumnName="PeriodStart" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tax">
+            <EntityTypeMapping TypeName="DwellingModel.Tax">
+              <MappingFragment StoreEntitySet="Tax">
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TaxId" ColumnName="TaxId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxServiceRel">
+            <EntityTypeMapping TypeName="DwellingModel.TaxServiceRel">
+              <MappingFragment StoreEntitySet="TaxServiceRel">
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="TaxId" ColumnName="TaxId" />
+                <ScalarProperty Name="TaxServiceRelId" ColumnName="TaxServiceRelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwServiceData">
+            <EntityTypeMapping TypeName="DwellingModel.VwServiceData">
+              <MappingFragment StoreEntitySet="VwServiceData">
+                <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Periodicity" ColumnName="Periodicity" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
