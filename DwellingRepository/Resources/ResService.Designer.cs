@@ -22,14 +22,14 @@ namespace DwellingRepository.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResShared {
+    public class ResService {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResShared() {
+        internal ResService() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DwellingRepository.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DwellingRepository.Resources.ResShared", typeof(ResShared).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DwellingRepository.Resources.ResService", typeof(ResService).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,56 @@ namespace DwellingRepository.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La longitud del campo no debe ser mayor a 50.
+        ///   Looks up a localized string similar to Día de pago.
         /// </summary>
-        public static string LENGTH_FIELD_50 {
+        public static string LABEL_DAY_TO_PAY {
             get {
-                return ResourceManager.GetString("LENGTH_FIELD_50", resourceCulture);
+                return ResourceManager.GetString("LABEL_DAY_TO_PAY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El valor de {0} debe estar entre {1} y {2}.
+        ///   Looks up a localized string similar to Días de prórroga.
         /// </summary>
-        public static string MIN_MAX_VALUE {
+        public static string LABEL_DAYS_EXTENSION {
             get {
-                return ResourceManager.GetString("MIN_MAX_VALUE", resourceCulture);
+                return ResourceManager.GetString("LABEL_DAYS_EXTENSION", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} es un campo requerido.
+        ///   Looks up a localized string similar to Nombre.
         /// </summary>
-        public static string REQUIRED_FIELD {
+        public static string LABEL_NAME {
             get {
-                return ResourceManager.GetString("REQUIRED_FIELD", resourceCulture);
+                return ResourceManager.GetString("LABEL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frecuencia.
+        /// </summary>
+        public static string LABEL_PERIODICITY {
+            get {
+                return ResourceManager.GetString("LABEL_PERIODICITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vigencia.
+        /// </summary>
+        public static string LABEL_START_DATE {
+            get {
+                return ResourceManager.GetString("LABEL_START_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Precio.
+        /// </summary>
+        public static string LABEL_VALUE {
+            get {
+                return ResourceManager.GetString("LABEL_VALUE", resourceCulture);
             }
         }
     }

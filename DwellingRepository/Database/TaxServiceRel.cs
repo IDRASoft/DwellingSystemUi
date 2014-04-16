@@ -12,19 +12,13 @@ namespace DwellingRepository.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Building
+    public partial class TaxServiceRel
     {
-        public Building()
-        {
-            this.DwellingApartment = new HashSet<DwellingApartment>();
-        }
+        public int TaxServiceRelId { get; set; }
+        public int TaxId { get; set; }
+        public int ServiceId { get; set; }
     
-        public int BuildingId { get; set; }
-        public int StreetId { get; set; }
-        public string NameBuilding { get; set; }
-        public string OuterNumber { get; set; }
-    
-        public virtual Street Street { get; set; }
-        public virtual ICollection<DwellingApartment> DwellingApartment { get; set; }
+        public virtual Service Service { get; set; }
+        public virtual Tax Tax { get; set; }
     }
 }

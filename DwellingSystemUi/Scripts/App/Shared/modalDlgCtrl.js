@@ -37,9 +37,18 @@
         return def.promise;
     };
 
-    $scope.doConfirm = function (data, urlToGo) {
+    $scope.doActiveServ = function (data, urlToGo) {
         var def = $q.defer();
-        sharedSvc.showConf({ Title: "Confirmación de Servicio", Message: "¿Está seguro que desea de confirmar el uso del servicio?", Type: "warning" }).
+        sharedSvc.showConf({ Title: "Activar Servicio", Message: "¿Está seguro que desea activar el servicio?", Type: "warning" }).
+            then(function () {
+                $scope.doPost(data, urlToGo, def);
+            }, def.reject);
+        return def.promise;
+    };
+    
+    $scope.doDeactiveServ = function (data, urlToGo) {
+        var def = $q.defer();
+        sharedSvc.showConf({ Title: "Desactivar Servicio", Message: "¿Está seguro que desea desactivar el servicio?", Type: "warning" }).
             then(function () {
                 $scope.doPost(data, urlToGo, def);
             }, def.reject);

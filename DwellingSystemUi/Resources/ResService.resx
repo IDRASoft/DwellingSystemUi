@@ -117,13 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LENGTH_FIELD_50" xml:space="preserve">
-    <value>La longitud del campo no debe ser mayor a 50</value>
+  <data name="CHECK_PERIODICITY" xml:space="preserve">
+    <value>Servicio frecuente</value>
   </data>
-  <data name="MIN_MAX_VALUE" xml:space="preserve">
-    <value>El valor de {0} debe estar entre {1} y {2}</value>
+  <data name="CHECK_TAX" xml:space="preserve">
+    <value>Impuestos</value>
   </data>
-  <data name="REQUIRED_FIELD" xml:space="preserve">
-    <value>{0} es un campo requerido</value>
+  <data name="FIELD_DAYS_EXTENSION" xml:space="preserve">
+    <value>Días de prórroga</value>
+  </data>
+  <data name="FIELD_DAYS_TO_PAY" xml:space="preserve">
+    <value>Día de pago</value>
+  </data>
+  <data name="FIELD_END_DATE" xml:space="preserve">
+    <value>Fecha de fin</value>
+  </data>
+  <data name="FIELD_NAME" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="FIELD_PERIODICITY" xml:space="preserve">
+    <value>Frecuencia</value>
+  </data>
+  <data name="FIELD_START_DATE" xml:space="preserve">
+    <value>Fecha de inicio</value>
+  </data>
+  <data name="FIELD_TAX" xml:space="preserve">
+    <value>Impuesto</value>
+  </data>
+  <data name="TITLE_GRID" xml:space="preserve">
+    <value>Servicios</value>
   </data>
 </root>

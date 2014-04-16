@@ -22,14 +22,14 @@ namespace DwellingSystemUi.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResShared {
+    public class ResService {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResShared() {
+        internal ResService() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DwellingSystemUi.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DwellingSystemUi.Resources.ResShared", typeof(ResShared).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DwellingSystemUi.Resources.ResService", typeof(ResService).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,101 +61,92 @@ namespace DwellingSystemUi.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancelar.
+        ///   Looks up a localized string similar to Servicio frecuente.
         /// </summary>
-        public static string BUTTON_CANCEL {
+        public static string CHECK_PERIODICITY {
             get {
-                return ResourceManager.GetString("BUTTON_CANCEL", resourceCulture);
+                return ResourceManager.GetString("CHECK_PERIODICITY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guardar.
+        ///   Looks up a localized string similar to Impuestos.
         /// </summary>
-        public static string BUTTON_SAVE {
+        public static string CHECK_TAX {
             get {
-                return ResourceManager.GetString("BUTTON_SAVE", resourceCulture);
+                return ResourceManager.GetString("CHECK_TAX", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existe uno o más campos inválidos. Por favor revise sus datos e intente de nuevo..
+        ///   Looks up a localized string similar to Días de prórroga.
         /// </summary>
-        public static string ERROR_INVALID_MODEL {
+        public static string FIELD_DAYS_EXTENSION {
             get {
-                return ResourceManager.GetString("ERROR_INVALID_MODEL", resourceCulture);
+                return ResourceManager.GetString("FIELD_DAYS_EXTENSION", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error desconocido.
+        ///   Looks up a localized string similar to Día de pago.
         /// </summary>
-        public static string ERROR_UNKOWN {
+        public static string FIELD_DAYS_TO_PAY {
             get {
-                return ResourceManager.GetString("ERROR_UNKOWN", resourceCulture);
+                return ResourceManager.GetString("FIELD_DAYS_TO_PAY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El registro fue guardado de forma exitosa.
+        ///   Looks up a localized string similar to Fecha de fin.
         /// </summary>
-        public static string INFO_REGISTER_SAVED {
+        public static string FIELD_END_DATE {
             get {
-                return ResourceManager.GetString("INFO_REGISTER_SAVED", resourceCulture);
+                return ResourceManager.GetString("FIELD_END_DATE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Viviendas.
+        ///   Looks up a localized string similar to Nombre.
         /// </summary>
-        public static string TITLE_MENU_DWELLING {
+        public static string FIELD_NAME {
             get {
-                return ResourceManager.GetString("TITLE_MENU_DWELLING", resourceCulture);
+                return ResourceManager.GetString("FIELD_NAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Administración.
+        ///   Looks up a localized string similar to Frecuencia.
         /// </summary>
-        public static string TITLE_MENU_MANAGMENT {
+        public static string FIELD_PERIODICITY {
             get {
-                return ResourceManager.GetString("TITLE_MENU_MANAGMENT", resourceCulture);
+                return ResourceManager.GetString("FIELD_PERIODICITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha de inicio.
+        /// </summary>
+        public static string FIELD_START_DATE {
+            get {
+                return ResourceManager.GetString("FIELD_START_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Impuesto.
+        /// </summary>
+        public static string FIELD_TAX {
+            get {
+                return ResourceManager.GetString("FIELD_TAX", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Servicios.
         /// </summary>
-        public static string TITLE_MENU_SERVICE {
+        public static string TITLE_GRID {
             get {
-                return ResourceManager.GetString("TITLE_MENU_SERVICE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Procesando su petición....
-        /// </summary>
-        public static string TITLE_PROCESSING {
-            get {
-                return ResourceManager.GetString("TITLE_PROCESSING", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Registro fallido.
-        /// </summary>
-        public static string TITLE_REGISTER_FAILED {
-            get {
-                return ResourceManager.GetString("TITLE_REGISTER_FAILED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Registro exitoso.
-        /// </summary>
-        public static string TITLE_REGISTER_SUCCESS {
-            get {
-                return ResourceManager.GetString("TITLE_REGISTER_SUCCESS", resourceCulture);
+                return ResourceManager.GetString("TITLE_GRID", resourceCulture);
             }
         }
     }

@@ -138,6 +138,9 @@
   <data name="TITLE_MENU_MANAGMENT" xml:space="preserve">
     <value>Administración</value>
   </data>
+  <data name="TITLE_MENU_SERVICE" xml:space="preserve">
+    <value>Servicios</value>
+  </data>
   <data name="TITLE_PROCESSING" xml:space="preserve">
     <value>Procesando su petición...</value>
   </data>
