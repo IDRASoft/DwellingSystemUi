@@ -1,0 +1,79 @@
+﻿@model DwellingRepository.Database.Service
+@using ResShared = DwellingSystemUi.Resources.ResShared
+@using ResService = DwellingSystemUi.Resources.ResService
+@{
+    Layout = null;
+}
+<script>
+    
+    $(document).ready(function () {
+
+        window.showModalFormDlg("#dlgUpModalId", "#AssociateServiceForm");
+        $(function () { $('#jstree_demo_div').jstree(); });
+       
+    });
+   
+</script>
+<link rel="stylesheet" href="~/Content/jstree/themes/default/style.min.css" />
+<script src="~/Content/jstree/libs/jquery.js"></script>
+<script src="~/Content/jstree/jstree.min.js"></script>
+<div id="dlgUpModalId" class="modal fade" ng-controller="upsertController" ng-cloak>
+    <div class="modal-dialog" style="width:450px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="element-center">Agregar Servicio</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="AssociateServiceForm" name="AssociateServiceForm" ng-submit="submit('#AssociateServiceForm')" class="form-horizontal" role="form" onsubmit="return createListTax()">
+                    @Html.HiddenFor(model => model.ServiceId)
+                    <div id="jstree_demo_div" style="height:300px;">
+                        <ul>
+                            <li id="phtml_1">
+                                <a href="#">Root node 1</a>
+                                <ul>
+                                    <li id="phtml_2">
+                                        <a href="#">Child node 1</a>
+                                    </li>
+                                    <li id="phtml_3">
+                                        <a href="#">Child node 2</a>
+                                    </li>
+                                    <li id="phtml_4">
+                                        <a href="#">Child node 3</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="phtml_5">
+                                <a href="#">Root node 2</a>
+                            </li>
+                            <li id="phtml_6">
+                                <a href="#">Root node 2</a>
+                            </li>
+                            <li id="phtml_7">
+                                <a href="#">Root node 2</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div ng-show="MsgError" class="alert alert-danger element-center">
+                            {{MsgError}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-default btn-sm" ng-click="cancel()">
+                    @ResShared.BUTTON_CANCEL
+                </span>
+                <span class="btn btn-default btn-primary btn-sm" ng-disabled="WaitFor==true"
+                      ng-click="submit('#ServiceForm', '@Url.Action("DoAssociate", "Service", new {area = "Managment"})')">
+                    @ResShared.BUTTON_SAVE
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

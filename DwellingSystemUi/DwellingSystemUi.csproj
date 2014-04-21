@@ -220,6 +220,15 @@
     <Content Include="Content\datepicker\bootstrap-datepicker.js" />
     <Content Include="Content\Images\icons\ajax_loader.gif" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
+    <Content Include="Content\jstree\jstree.js" />
+    <Content Include="Content\jstree\jstree.min.js" />
+    <Content Include="Content\jstree\libs\jquery.js" />
+    <Content Include="Content\jstree\libs\require.js" />
+    <Content Include="Content\jstree\themes\default\32px.png" />
+    <Content Include="Content\jstree\themes\default\40px.png" />
+    <Content Include="Content\jstree\themes\default\style.css" />
+    <Content Include="Content\jstree\themes\default\style.min.css" />
+    <Content Include="Content\jstree\themes\default\throbber.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -345,6 +354,7 @@
     <Content Include="Areas\Managment\Views\Service\Upsert.cshtml" />
     <Content Include="Content\datepicker\datepicker.css" />
     <Content Include="Areas\Managment\Views\Resident\Upsert.cshtml" />
+    <Content Include="Areas\Managment\Views\Service\AssociationDwelling.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />

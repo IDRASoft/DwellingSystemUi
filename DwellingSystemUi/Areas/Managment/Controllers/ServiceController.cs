@@ -69,5 +69,10 @@ namespace DwellingSystemUi.Areas.Managment.Controllers
             var serviceRepository = new ServiceRepository(Db);
             return Json(serviceRepository.DoUpsert(service));
         }
+
+        public ActionResult AssociationDwelling()
+        {
+            return View();
+        }
 	}
 }
